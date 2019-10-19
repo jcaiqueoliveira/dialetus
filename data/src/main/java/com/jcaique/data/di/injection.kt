@@ -1,15 +1,23 @@
 package com.jcaique.data.di
 
+import com.jcaique.data.Consts.URL
 import com.jcaique.data.networking.OkHttpClientProvider
 import com.jcaique.data.networking.RetrofitProvider
 import com.jcaique.data.service.DialetusGateway
 import okhttp3.logging.HttpLoggingInterceptor
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.singleton
 
-// TODO("Use kodein to dependency injection")
-private const val baseUrl = "https://dialetus-service.herokuapp.com/"
 
-private val interceptors = listOf(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
-private val okHttpClient = OkHttpClientProvider.provide(interceptors)
-private val retrofit = RetrofitProvider.provide(baseUrl, okHttpClient)
+private val interceptors =
+    listOf(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
 
-internal val service = retrofit.create(DialetusGateway::class.java)
+val dataModule = Kodein.Module(name = "network") {
+
+    bind<DialetusGateway>() with singleton {
+        val client = OkHttpClientProvider.provide(interceptors)
+        val retrofit = RetrofitProvider.provide(URL, client)
+        retrofit.create(DialetusGateway::class.java)
+    }
+}
