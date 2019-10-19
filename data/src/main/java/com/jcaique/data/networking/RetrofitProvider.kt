@@ -6,7 +6,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 
-object RetrofitProvider {
+internal object RetrofitProvider {
 
     private const val APPLICATION_JSON = "application/json"
 

@@ -6,10 +6,10 @@ import com.jcaique.data.service.DialetusGateway
 import okhttp3.logging.HttpLoggingInterceptor
 
 // TODO("Use kodein to dependency injection")
-val baseUrl = "https://dialetus-service.herokuapp.com/"
+private const val baseUrl = "https://dialetus-service.herokuapp.com/"
 
-val interceptors = listOf(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
-val okHttpClient = OkHttpClientProvider.provide(interceptors)
-val retrofit = RetrofitProvider.provide(baseUrl, okHttpClient)
+private val interceptors = listOf(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
+private val okHttpClient = OkHttpClientProvider.provide(interceptors)
+private val retrofit = RetrofitProvider.provide(baseUrl, okHttpClient)
 
-val service = retrofit.create(DialetusGateway::class.java)
+internal val service = retrofit.create(DialetusGateway::class.java)
