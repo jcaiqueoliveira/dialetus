@@ -1,0 +1,13 @@
+apply from: "../kotlin-module.gradle"
+apply plugin: 'kotlinx-serialization'
+
+dependencies {
+
+    implementation Dependencies.coroutines
+
+    StandaloneModule.main.forEach { implementation it }
+    StandaloneModule.unitTesting.forEach { testImplementation it }
+
+    NetworkingDependencies.main.forEach { implementation it }
+    NetworkingDependencies.testing.forEach { testImplementation it }
+}

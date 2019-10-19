@@ -1,0 +1,2 @@
+include ':app', ':data', ':presentation', ':domain'
+rootProject.name='Dialetus'
