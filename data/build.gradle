@@ -1,8 +1,13 @@
-apply plugin: 'java-library'
+apply from: "../kotlin-module.gradle"
+apply plugin: 'kotlinx-serialization'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-}
 
-sourceCompatibility = "7"
-targetCompatibility = "7"
+    implementation Dependencies.coroutines
+
+    StandaloneModule.main.forEach { implementation it }
+    StandaloneModule.unitTesting.forEach { testImplementation it }
+
+    NetworkingDependencies.main.forEach { implementation it }
+    NetworkingDependencies.testing.forEach { testImplementation it }
+}

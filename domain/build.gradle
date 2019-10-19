@@ -1,8 +1,7 @@
-apply plugin: 'java-library'
+apply from: "../kotlin-module.gradle"
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Dependencies.coroutines
+    StandaloneModule.main.forEach { implementation it }
+    StandaloneModule.unitTesting.forEach { testImplementation it }
 }
-
-sourceCompatibility = "7"
-targetCompatibility = "7"

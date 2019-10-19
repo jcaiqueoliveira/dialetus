@@ -7,7 +7,7 @@ object Versions {
     const val okhttp4 = "4.2.1"
     const val retrofit2 = "2.6.2"
     const val ktxConverter = "0.2.0"
-    const val ktxSerialization = "0.9.0"
+    const val ktxSerialization = "0.13.0"
 
     const val materialDesign = "1.1.0-alpha10"
     const val androidxAppCompat = "1.1.0"
@@ -34,11 +34,12 @@ object Versions {
     const val kodeinDI = "6.0.1"
     const val slf4j = "1.7.25"
     const val fabric = "1.26.1"
+    const val coroutine = "1.3.2"
 }
 
 object Dependencies {
 
-    val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
+    val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
     val kotlinxSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.ktxSerialization}"
 
@@ -81,6 +82,9 @@ object Dependencies {
 
     val groupie = "com.xwray:groupie:${Versions.groupie}"
     val groupieKTX = "com.xwray:groupie-kotlin-android-extensions:${Versions.groupie}"
+
+    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
+    val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
 }
 
 object BuildPlugins {

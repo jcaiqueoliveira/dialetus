@@ -7,6 +7,8 @@ dependencies {
     implementation project(':data')
 
     implementation Dependencies.androidxConstraintLayout
+    implementation Dependencies.coroutines
+    implementation Dependencies.coroutinesAndroid
 
     AndroidModule.main.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }
