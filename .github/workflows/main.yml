@@ -1,2 +1,5 @@
-- name: setup-android
-  uses: msfjarvis/setup-android@0.2
+- name: "Run test suite"
+  uses: msfjarvis/setup-android@1.0
+  with:
+    entrypoint: ./gradlew
+    args: dependencies spotlessApply detekt assembleDebug
