@@ -1,0 +1,2 @@
+- name: setup-android
+  uses: msfjarvis/setup-android@0.2
