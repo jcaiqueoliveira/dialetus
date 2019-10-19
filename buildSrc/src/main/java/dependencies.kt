@@ -6,7 +6,7 @@ object Versions {
 
     const val okhttp4 = "4.2.1"
     const val retrofit2 = "2.6.2"
-    const val ktxConverter = "0.2.0"
+    const val ktxConverter = "0.4.0"
     const val ktxSerialization = "0.13.0"
 
     const val materialDesign = "1.1.0-alpha10"
