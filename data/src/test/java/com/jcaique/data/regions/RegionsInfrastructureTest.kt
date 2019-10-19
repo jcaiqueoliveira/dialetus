@@ -2,7 +2,7 @@ package com.jcaique.data.regions
 
 import com.jcaique.data.common.SetupScenario
 import com.jcaique.data.common.loadFile
-import com.jcaique.data.service.regions.RetrofitRegionsService
+import com.jcaique.data.service.regions.RegionsInfrastructure
 import com.jcaique.domain.models.Region
 import com.jcaique.domain.regions.RegionsService
 import kotlinx.coroutines.runBlocking
@@ -11,7 +11,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-class RetrofitRegionsServiceTest {
+class RegionsInfrastructureTest {
 
     @get:Rule
     private val scenario = SetupScenario()
@@ -20,7 +20,7 @@ class RetrofitRegionsServiceTest {
 
     @Before
     fun setup(){
-        service = RetrofitRegionsService(scenario.api)
+        service = RegionsInfrastructure(scenario.api)
     }
 
     @Test
