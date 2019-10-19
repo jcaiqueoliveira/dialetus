@@ -1,6 +1,5 @@
 package com.jcaique.presentation.utils
 
-import android.app.Service
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
@@ -40,11 +39,3 @@ fun AppCompatActivity.selfInject(bindings: Kodein.MainBuilder.() -> Unit = {}) =
 
     bindings.invoke(this)
 }
-
-fun Service.selfInject(bindings: Kodein.MainBuilder.() -> Unit = {}) = Kodein.lazy {
-    val parentKodein = (applicationContext as KodeinAware).kodein
-    extend(parentKodein)
-    bindings.invoke(this)
-}
-
-
