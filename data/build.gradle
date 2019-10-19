@@ -3,6 +3,7 @@ apply plugin: 'kotlinx-serialization'
 
 dependencies {
 
+    implementation project (":domain")
     implementation Dependencies.coroutines
 
     StandaloneModule.main.forEach { implementation it }

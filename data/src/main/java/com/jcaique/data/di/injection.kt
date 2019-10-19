@@ -4,6 +4,8 @@ import com.jcaique.data.Consts.URL
 import com.jcaique.data.networking.OkHttpClientProvider
 import com.jcaique.data.networking.RetrofitProvider
 import com.jcaique.data.service.DialetusGateway
+import com.jcaique.data.service.regions.RetrofitRegionsService
+import com.jcaique.domain.regions.RegionsService
 import okhttp3.logging.HttpLoggingInterceptor
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
