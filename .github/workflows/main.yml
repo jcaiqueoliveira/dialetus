@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - name: "Check & Build"
-      uses: msfjarvis/setup-android@1.0
+      uses: vgaidarji/android-github-actions/build@v1.0.0
       with:
         entrypoint: ./gradlew
         args: check assembleDebug
