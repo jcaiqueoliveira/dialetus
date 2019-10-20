@@ -19,7 +19,7 @@ internal class RegionsViewModel(
 
     private fun interpret(interaction: UserInteraction) =
         when (interaction) {
-            UserInteraction.OpenedScreen, 
+            UserInteraction.OpenedScreen,
             UserInteraction.RequestedFreshContent -> StateTransition(::showRegions)
             else -> throw UnsupportedUserInteraction
         }

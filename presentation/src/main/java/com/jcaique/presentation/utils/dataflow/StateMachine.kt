@@ -24,7 +24,11 @@ internal class StateMachine<T>(
             val execution =
                 when (transition) {
                     is StateTransition.Unparametrized -> transition.task.invoke()
-                    is StateTransition.Parametrized -> with(transition) { this.task.invoke(parameters) }
+                    is StateTransition.Parametrized -> with(transition) {
+                        this.task.invoke(
+                            parameters
+                        )
+                    }
                 }
             ViewState.Success(execution)
         } catch (error: Throwable) {

@@ -66,7 +66,8 @@ class RegionsViewModelTest {
         }
     }
 
-    @Test fun `should fetch regions from remote data source with success`() {
+    @Test
+    fun `should fetch regions from remote data source with success`() {
 
         // Given
 

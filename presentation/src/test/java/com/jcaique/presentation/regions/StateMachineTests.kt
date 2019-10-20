@@ -19,16 +19,19 @@ internal class StateMachineTests {
 
     private lateinit var machine: StateMachine<String>
 
-    @get:Rule val helper = CoroutinesTestHelper()
+    @get:Rule
+    val helper = CoroutinesTestHelper()
 
-    @Before fun `before each test`() {
+    @Before
+    fun `before each test`() {
         machine = StateMachine(
             container = StateContainer.Unbounded(helper.scope),
             executor = TaskExecutor.Synchronous(helper.scope)
         )
     }
 
-    @Test fun `should generate states, successful execution`() {
+    @Test
+    fun `should generate states, successful execution`() {
 
         // Given
         flowTest(machine.states()) {
@@ -54,7 +57,8 @@ internal class StateMachineTests {
         }
     }
 
-    @Test fun `should generate states, error execution`() {
+    @Test
+    fun `should generate states, error execution`() {
 
         // Given
         flowTest(machine.states()) {
@@ -80,7 +84,8 @@ internal class StateMachineTests {
         }
     }
 
-    @Test fun `should generate states, with previous execution`() {
+    @Test
+    fun `should generate states, with previous execution`() {
 
         // Given
         flowTest(machine.states()) {
@@ -115,7 +120,8 @@ internal class StateMachineTests {
         }
     }
 
-    @Test fun `should generate states, ignoring previous broken execution`() {
+    @Test
+    fun `should generate states, ignoring previous broken execution`() {
 
         // Given
         flowTest(machine.states()) {

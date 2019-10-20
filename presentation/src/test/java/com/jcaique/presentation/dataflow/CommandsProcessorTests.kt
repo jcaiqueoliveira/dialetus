@@ -15,17 +15,20 @@ import kotlin.coroutines.suspendCoroutine
 
 internal class CommandsProcessorTests {
 
-    @get:Rule val helper = CoroutinesTestHelper()
+    @get:Rule
+    val helper = CoroutinesTestHelper()
 
     private lateinit var processor: CommandsProcessor
 
-    @Before fun `before each test`() {
+    @Before
+    fun `before each test`() {
         processor = CommandsProcessor(
             executor = TaskExecutor.Synchronous(helper.scope)
         )
     }
 
-    @Test fun `should trigger commands`() {
+    @Test
+    fun `should trigger commands`() {
         with(processor) {
             commands().test {
 
