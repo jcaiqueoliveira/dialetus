@@ -8,8 +8,7 @@ import com.jcaique.domain.models.Dialect
 import com.jcaique.domain.models.DialectSlug
 
 internal class DialectsInfrastructure(private val api: DialetusGateway) : DialectsService {
-    
-    
+
     override suspend fun getDialectsBy(region: String): List<Dialect> = executionHandler {
         api.getDialectsBy(region)
             .map(DialectsMapper::toDomain)

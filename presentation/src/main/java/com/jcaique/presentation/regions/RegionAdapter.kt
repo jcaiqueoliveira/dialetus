@@ -9,7 +9,7 @@ import com.jcaique.presentation.R
 import kotlinx.android.synthetic.main.item_region.view.*
 
 internal class RegionAdapter(
-    private val presentation: RegionsPresentation
+  private val presentation: RegionsPresentation
 ) : RecyclerView.Adapter<RegionHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RegionHolder {

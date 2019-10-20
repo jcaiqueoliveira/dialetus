@@ -11,5 +11,4 @@ internal object OkHttpClientProvider {
         }
     }
         .build()
-
 }

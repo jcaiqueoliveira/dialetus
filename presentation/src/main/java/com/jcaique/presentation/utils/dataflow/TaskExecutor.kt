@@ -11,8 +11,8 @@ internal interface TaskExecutor {
     fun execute(block: suspend TaskExecutor.() -> Unit): Job
 
     class Concurrent(
-        private val scope: CoroutineScope,
-        private val dispatcher: CoroutineDispatcher
+      private val scope: CoroutineScope,
+      private val dispatcher: CoroutineDispatcher
     ) : TaskExecutor {
         override fun execute(block: suspend TaskExecutor.() -> Unit) =
             scope.launch(dispatcher) {

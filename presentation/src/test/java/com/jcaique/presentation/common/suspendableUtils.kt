@@ -1,7 +1,7 @@
 package com.jcaique.presentation.common
 
-import kotlinx.coroutines.runBlocking
 import kotlin.properties.Delegates
+import kotlinx.coroutines.runBlocking
 
 fun unwrapError(result: Result<*>) =
     result.exceptionOrNull()

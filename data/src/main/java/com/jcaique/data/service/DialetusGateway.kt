@@ -9,11 +9,11 @@ import retrofit2.http.Query
 internal interface DialetusGateway {
 
     @GET("regions")
-    suspend fun fetchRegions() : List<RegionResponse>
+    suspend fun fetchRegions(): List<RegionResponse>
 
     @GET("regions/{region}/dialects")
-    suspend fun getDialectsBy(@Path("region") region: String) : List<DialectResponse>
+    suspend fun getDialectsBy(@Path("region") region: String): List<DialectResponse>
 
     @GET("search")
-    suspend fun searchDialects(@Query("q") query: String) : Map<String, List<DialectResponse>>
+    suspend fun searchDialects(@Query("q") query: String): Map<String, List<DialectResponse>>
 }

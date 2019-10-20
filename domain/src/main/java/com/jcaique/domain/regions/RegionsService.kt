@@ -4,5 +4,5 @@ import com.jcaique.domain.models.Region
 
 interface RegionsService {
 
-    suspend fun fetchRegions() : List<Region>
+    suspend fun fetchRegions(): List<Region>
 }

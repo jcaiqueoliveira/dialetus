@@ -3,6 +3,7 @@ object Versions {
     const val kotlin = "1.3.50"
     const val androidGradleSupport = "3.5.1"
     const val gmsSupport = "4.3.2"
+    const val ktlint = "9.0.0"
 
     const val okhttp4 = "4.2.1"
     const val retrofit2 = "2.6.2"
@@ -92,8 +93,8 @@ object BuildPlugins {
 
     val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradleSupport}"
     val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-    val kotlinxSerializiationPlugin =
-        "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
+    val kotlinxSerializiationPlugin = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
+    val ktlint = "org.jlleitschuh.gradle:ktlint-gradle:${Versions.ktlint}"
 
     val gmsPlugin = "com.google.gms:google-services:${Versions.gmsSupport}"
     val firebaseCrashlytics = "io.fabric.tools:gradle:${Versions.fabric}"
