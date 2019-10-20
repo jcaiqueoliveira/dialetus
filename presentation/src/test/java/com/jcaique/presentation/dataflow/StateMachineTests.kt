@@ -1,4 +1,4 @@
-package com.jcaique.presentation.regions
+package com.jcaique.presentation.dataflow
 
 import com.jcaique.presentation.common.CoroutinesTestHelper
 import com.jcaique.presentation.common.FlowTest.Companion.flowTest
@@ -100,7 +100,9 @@ internal class StateMachineTests {
             // And
             triggerEmissions {
                 machine.consume(
-                    StateTransition(::successfulExecution, Interaction)
+                    StateTransition(::successfulExecution,
+                        Interaction
+                    )
                 )
             }
 
