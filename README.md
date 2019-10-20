@@ -40,6 +40,6 @@ This project leverages on
 - OkHttp4 + Retrofit for networking over HTTP
 
 ## Following the project
-(Issues)[https://github.com/jcaiqueoliveira/dialetus/issues/]
-(Roadmap)[https://github.com/jcaiqueoliveira/dialetus/projects/]
-(Contributing)[../semantic_git.md]
+- (Issues)[https://github.com/jcaiqueoliveira/dialetus/issues/]
+- (Roadmap)[https://github.com/jcaiqueoliveira/dialetus/projects/]
+- (Contributing)[./semantic_git.md]
