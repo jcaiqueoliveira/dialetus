@@ -2,6 +2,10 @@
 
 Android repository for [Dialetus](https://github.com/mvfsillva/dialetus)
 
+This project is used to experiment kotlin Coroutines and flow. Applying some abstractions
+created by [Ubiratan](https://github.com/ubiratansoares) and the nice sample project
+[Norris](https://github.com/dotanuki-labs/norris)
+
 [Api Documentation](https://github.com/mvfsillva/dialetus-service#-api)
 
 ## Building and Running
@@ -36,4 +40,7 @@ This project leverages on
 - Kotlinx.Serialization for automatic JSON handling
 - OkHttp4 + Retrofit for networking over HTTP
 
-
+## Following the project
+- [Issues](https://github.com/jcaiqueoliveira/dialetus/issues/)
+- [Roadmap](https://github.com/jcaiqueoliveira/dialetus/projects/)
+- [Contributing](./documentation/semantic-git.md)
