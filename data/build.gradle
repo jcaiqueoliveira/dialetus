@@ -5,6 +5,7 @@ dependencies {
 
     implementation project (":domain")
     implementation Dependencies.coroutines
+    implementation Dependencies.kotlinxSerialization
 
     StandaloneModule.main.forEach { implementation it }
     StandaloneModule.unitTesting.forEach { testImplementation it }
