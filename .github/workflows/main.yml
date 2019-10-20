@@ -1,5 +1,15 @@
-- name: "Run test suite"
-  uses: msfjarvis/setup-android@1.0
-  with:
-    entrypoint: ./gradlew
-    args: check assembleDebug
+name: Android CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: "Check & Build"
+      uses: msfjarvis/setup-android@1.0
+      with:
+        entrypoint: ./gradlew
+        args: check assembleDebug
