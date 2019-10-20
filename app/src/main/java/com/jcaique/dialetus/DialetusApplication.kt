@@ -2,6 +2,7 @@ package com.jcaique.dialetus
 
 import android.app.Application
 import com.jcaique.data.di.dataModule
+import com.jcaique.presentation.di.presentationModule
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.conf.ConfigurableKodein
@@ -20,6 +21,6 @@ class DialetusApplication : Application(), KodeinAware {
     override val kodein = ConfigurableKodein(mutable = true).apply {
         addImport(appModule)
         addImport(dataModule)
-        addImport(presentation)
+        addImport(presentationModule)
     }
 }
