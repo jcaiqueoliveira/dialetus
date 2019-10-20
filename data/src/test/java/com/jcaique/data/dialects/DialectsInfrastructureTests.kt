@@ -15,7 +15,6 @@ class DialectsInfrastructureTests {
 
     @get:Rule
     internal val scenario = SetupScenario()
-
     private lateinit var service: DialectsService
 
     @Before
