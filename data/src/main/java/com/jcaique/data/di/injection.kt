@@ -4,7 +4,9 @@ import com.jcaique.data.Consts.URL
 import com.jcaique.data.networking.OkHttpClientProvider
 import com.jcaique.data.networking.RetrofitProvider
 import com.jcaique.data.service.DialetusGateway
+import com.jcaique.data.service.dialects.DialectsInfrastructure
 import com.jcaique.data.service.regions.RegionsInfrastructure
+import com.jcaique.domain.dialects.DialectsService
 import com.jcaique.domain.regions.RegionsService
 import okhttp3.logging.HttpLoggingInterceptor
 import org.kodein.di.Kodein
@@ -26,5 +28,9 @@ val dataModule = Kodein.Module(name = "network") {
 
     bind<RegionsService>() with singleton {
         RegionsInfrastructure(api = instance())
+    }
+
+    bind<DialectsService>() with singleton {
+        DialectsInfrastructure(api = instance())
     }
 }
