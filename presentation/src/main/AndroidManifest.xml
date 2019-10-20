@@ -1,2 +1,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jcaique.presentation" />
+    package="com.jcaique.presentation">
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application>
+        <activity android:name="com.jcaique.presentation.regions.RegionsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

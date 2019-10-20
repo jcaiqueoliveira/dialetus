@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.jcaique.presentation.utils.KodeinTags.hostActivity
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.direct
@@ -33,7 +34,7 @@ fun AppCompatActivity.selfInject(bindings: Kodein.MainBuilder.() -> Unit = {}) =
 
     extend(parentKodein)
 
-    bind<FragmentActivity>() with provider {
+    bind<FragmentActivity>(tag = hostActivity) with provider {
         this@selfInject
     }
 

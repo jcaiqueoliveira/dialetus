@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">presentation</string>
+    <string name="app_name">Dialetus</string>
+    <string name="text_button_try_again">Tentar novamente</string>
+    <string name="text_title_error">Ops, algo deu errado.</string>
+    <string name="menu_contribute">Como contribuir</string>
+    <string name="text_description_error">Não conseguimos carregar as regiões</string>
+    <string name="title_no_events_found">Nenhum dialeto cadastrado</string>
+    <string name="text_description_no_dialects_found">Não foi encontrado nenhum dialeto ou região.</string>
 </resources>
