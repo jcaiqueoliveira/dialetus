@@ -43,4 +43,4 @@ This project leverages on
 ## Following the project
 - [Issues](https://github.com/jcaiqueoliveira/dialetus/issues/)
 - [Roadmap](https://github.com/jcaiqueoliveira/dialetus/projects/)
-- [Contributing](./semantic-git.md)
+- [Contributing](./documentation/semantic-git.md)
