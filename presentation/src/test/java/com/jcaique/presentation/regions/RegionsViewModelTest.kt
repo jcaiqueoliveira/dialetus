@@ -73,7 +73,7 @@ class RegionsViewModelTest {
 
         val regions = listOf(
             Region(
-                name = "baianes",
+                name = "Baianes",
                 total = 1
             )
         )

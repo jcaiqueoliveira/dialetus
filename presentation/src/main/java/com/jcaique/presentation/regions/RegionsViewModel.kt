@@ -1,5 +1,6 @@
 package com.jcaique.presentation.regions
 
+import androidx.lifecycle.ViewModel
 import com.jcaique.domain.regions.RegionsService
 import com.jcaique.presentation.utils.dataflow.StateMachine
 import com.jcaique.presentation.utils.dataflow.StateTransition
@@ -9,7 +10,7 @@ import com.jcaique.presentation.utils.dataflow.UserInteraction
 internal class RegionsViewModel(
     private val service: RegionsService,
     private val machine: StateMachine<RegionsPresentation>
-) {
+) : ViewModel() {
 
     fun bind() = machine.states()
 
@@ -27,5 +28,6 @@ internal class RegionsViewModel(
     private suspend fun showRegions() =
         service
             .fetchRegions()
+            .map { it.copy(it.name.capitalize()) }
             .let(::RegionsPresentation)
 }

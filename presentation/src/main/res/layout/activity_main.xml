@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#FFFFFF">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/toolBarMainActivity"
+        android:minHeight="?attr/actionBarSize"
+        app:title="Dialetus"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/toolBarMainActivity"
+        android:id="@+id/regionsRv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"/>
+
+    <ProgressBar style="?android:attr/progressBarStyle"
+        android:id="@+id/loadingStateView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        tools:visibility="gone"/>
+
+    <include layout="@layout/empty_state_layout"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/emptyStateView"
+        />
+
+    <include layout="@layout/error_state_layout"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/errorStateView"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
