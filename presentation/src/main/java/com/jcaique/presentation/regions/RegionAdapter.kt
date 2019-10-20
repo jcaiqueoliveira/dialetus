@@ -25,7 +25,7 @@ internal class RegionAdapter(
     }
 }
 
-class RegionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+internal class RegionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(row: Region) {
         itemView.regionName.text = row.name

@@ -23,8 +23,7 @@
         android:layout_below="@id/toolBarMainActivity"
         android:id="@+id/regionsRv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="?attr/actionBarSize"/>
+        android:layout_height="match_parent"/>
 
     <ProgressBar style="?android:attr/progressBarStyle"
         android:id="@+id/loadingStateView"
