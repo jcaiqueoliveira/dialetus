@@ -14,7 +14,7 @@ import org.junit.Test
 class RegionsInfrastructureTest {
 
     @get:Rule
-    private val scenario = SetupScenario()
+    internal val scenario = SetupScenario()
 
     private lateinit var service: RegionsService
 
