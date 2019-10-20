@@ -19,12 +19,12 @@ class RegionsInfrastructureTest {
     private lateinit var service: RegionsService
 
     @Before
-    fun setup(){
+    fun setup() {
         service = RegionsInfrastructure(scenario.api)
     }
 
     @Test
-    fun `should fetch regions`(){
+    fun `should fetch regions`() {
 
         scenario.defineScenario(
             status = 200,
@@ -48,7 +48,7 @@ class RegionsInfrastructureTest {
                 name = "paulistes",
                 total = 16
             ),
-            Region (
+            Region(
                 name = "pernambuques",
                 total = 17
             ),
@@ -59,6 +59,5 @@ class RegionsInfrastructureTest {
         )
 
         assertThat(execution).isEqualTo(expected)
-
     }
 }

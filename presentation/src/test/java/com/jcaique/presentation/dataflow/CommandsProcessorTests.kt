@@ -6,12 +6,12 @@ import com.jcaique.presentation.utils.dataflow.CommandTrigger
 import com.jcaique.presentation.utils.dataflow.CommandsProcessor
 import com.jcaique.presentation.utils.dataflow.TaskExecutor
 import com.jcaique.presentation.utils.dataflow.ViewCommand
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 internal class CommandsProcessorTests {
 

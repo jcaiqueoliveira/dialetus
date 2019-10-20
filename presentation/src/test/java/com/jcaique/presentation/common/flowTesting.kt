@@ -28,9 +28,9 @@ class FlowTest<T>(private val parentJob: Job, private val emissions: List<T>) {
 
     companion object {
         fun <T> flowTest(
-            target: Flow<T>,
-            scope: CoroutineScope = GlobalScope,
-            block: FlowTest<T>.() -> Unit
+          target: Flow<T>,
+          scope: CoroutineScope = GlobalScope,
+          block: FlowTest<T>.() -> Unit
         ) {
             target.test(scope, block)
         }

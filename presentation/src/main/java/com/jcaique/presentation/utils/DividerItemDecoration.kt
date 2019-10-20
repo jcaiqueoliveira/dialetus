@@ -36,7 +36,8 @@ internal class DividerItemDecoration(context: Context, orientation: Int = Linear
         if (mDivider == null) {
             Log.w(
                 TAG,
-                "@android:attr/listDivider was not set in the theme used for this " + "DividerItemDecoration. " +
+                "@android:attr/listDivider was not set in the theme used for this " +
+                    "DividerItemDecoration. " +
                     "Please set that attribute all call setDrawable()"
             )
         }
@@ -51,7 +52,9 @@ internal class DividerItemDecoration(context: Context, orientation: Int = Linear
      * @param orientation [.HORIZONTAL] or [.VERTICAL]
      */
     private fun setOrientation(orientation: Int) {
-        require(!(orientation != HORIZONTAL && orientation != VERTICAL)) { "Invalid orientation. It should be either HORIZONTAL or VERTICAL" }
+        require(!(orientation != HORIZONTAL && orientation != VERTICAL)) {
+            "Invalid orientation. It should be either HORIZONTAL or VERTICAL"
+        }
         mOrientation = orientation
     }
 
@@ -65,18 +68,18 @@ internal class DividerItemDecoration(context: Context, orientation: Int = Linear
     }
 
     override fun getItemOffsets(
-        outRect: Rect,
-        view: View,
-        parent: RecyclerView,
-        state: RecyclerView.State
+      outRect: Rect,
+      view: View,
+      parent: RecyclerView,
+      state: RecyclerView.State
     ) {
         if (mDivider == null) {
             outRect.set(0, 0, 0, 0)
             return
         }
-        when(mOrientation == VERTICAL) {
+        when (mOrientation == VERTICAL) {
             true -> outRect.set(0, 0, 0, mDivider!!.intrinsicHeight)
-            false-> outRect.set(0, 0, mDivider!!.intrinsicWidth, 0)
+            false -> outRect.set(0, 0, mDivider!!.intrinsicWidth, 0)
         }
     }
 
@@ -117,11 +120,11 @@ internal class DividerItemDecoration(context: Context, orientation: Int = Linear
     }
 
     private fun drawVerticalChild(
-        canvas: Canvas,
-        view: View,
-        parent: RecyclerView,
-        left: Int,
-        right: Int
+      canvas: Canvas,
+      view: View,
+      parent: RecyclerView,
+      left: Int,
+      right: Int
     ) {
         parent.getDecoratedBoundsWithMargins(view, mBounds)
 
@@ -158,11 +161,11 @@ internal class DividerItemDecoration(context: Context, orientation: Int = Linear
     }
 
     private fun drawHorizontalChild(
-        canvas: Canvas,
-        view: View,
-        parent: RecyclerView,
-        top: Int,
-        bottom: Int
+      canvas: Canvas,
+      view: View,
+      parent: RecyclerView,
+      top: Int,
+      bottom: Int
     ) {
         parent.layoutManager?.getDecoratedBoundsWithMargins(view, mBounds)
 

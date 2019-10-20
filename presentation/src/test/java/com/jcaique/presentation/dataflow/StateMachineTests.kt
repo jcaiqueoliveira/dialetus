@@ -1,4 +1,4 @@
-package com.jcaique.presentation.regions
+package com.jcaique.presentation.dataflow
 
 import com.jcaique.presentation.common.CoroutinesTestHelper
 import com.jcaique.presentation.common.FlowTest.Companion.flowTest
@@ -7,13 +7,13 @@ import com.jcaique.presentation.utils.dataflow.StateMachine
 import com.jcaique.presentation.utils.dataflow.StateTransition
 import com.jcaique.presentation.utils.dataflow.TaskExecutor
 import com.jcaique.presentation.utils.dataflow.ViewState
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 internal class StateMachineTests {
 
@@ -100,7 +100,9 @@ internal class StateMachineTests {
             // And
             triggerEmissions {
                 machine.consume(
-                    StateTransition(::successfulExecution, Interaction)
+                    StateTransition(::successfulExecution,
+                        Interaction
+                    )
                 )
             }
 

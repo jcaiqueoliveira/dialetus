@@ -10,7 +10,9 @@ import com.jcaique.presentation.utils.DividerItemDecoration
 import com.jcaique.presentation.utils.dataflow.UserInteraction.OpenedScreen
 import com.jcaique.presentation.utils.dataflow.UserInteraction.RequestedFreshContent
 import com.jcaique.presentation.utils.dataflow.ViewState
-import com.jcaique.presentation.utils.dataflow.ViewState.*
+import com.jcaique.presentation.utils.dataflow.ViewState.Failed
+import com.jcaique.presentation.utils.dataflow.ViewState.Loading
+import com.jcaique.presentation.utils.dataflow.ViewState.Success
 import com.jcaique.presentation.utils.selfInject
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.error_state_layout.*

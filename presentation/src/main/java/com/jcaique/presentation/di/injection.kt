@@ -24,7 +24,7 @@ val presentationModule = Kodein.Module(name = "presentation") {
                 dispatcher = instance()
             )
         )
-        
+
         RegionsViewModel(
             service = instance(),
             machine = stateMachine

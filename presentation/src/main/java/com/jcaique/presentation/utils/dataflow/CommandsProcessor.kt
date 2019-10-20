@@ -4,7 +4,7 @@ import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.asFlow
 
 internal class CommandsProcessor(
-    private val executor: TaskExecutor
+  private val executor: TaskExecutor
 ) {
 
     private val broadcaster = ConflatedBroadcastChannel<ViewCommand>()
