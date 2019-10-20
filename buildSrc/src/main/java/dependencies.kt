@@ -85,6 +85,7 @@ object Dependencies {
 
     val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
     val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
+    val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutine}"
 }
 
 object BuildPlugins {
@@ -143,7 +144,8 @@ object AndroidModule {
         Dependencies.assertJ,
         Dependencies.kotlinReflect,
         Dependencies.mockitoKotlin,
-        Dependencies.slf4j
+        Dependencies.slf4j,
+        Dependencies.coroutinesTest
     )
 
     val androidTesting = listOf(
@@ -177,6 +179,7 @@ object StandaloneModule {
         Dependencies.slf4jNoOp,
         Dependencies.mockitoKotlin,
         Dependencies.kotlinReflect,
-        Dependencies.mockitoInline
+        Dependencies.mockitoInline,
+        Dependencies.coroutinesTest
     )
 }
