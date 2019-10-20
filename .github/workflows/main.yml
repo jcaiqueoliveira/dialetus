@@ -8,8 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: "Check & Build"
-      uses: vgaidarji/android-github-actions/build@v1.0.0
+    - uses: actions/checkout@v1
+    - uses: msfjarvis/setup-android@1.0
       with:
-        entrypoint: ./gradlew
-        args: check assembleDebug
+        args: "./gradlew check assembleDebug"
