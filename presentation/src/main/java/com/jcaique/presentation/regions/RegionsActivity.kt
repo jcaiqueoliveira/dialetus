@@ -65,9 +65,9 @@ class RegionsActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun controlVisibilities(state: ViewState<RegionsPresentation>) {
-        loadingStateView.isVisible = (state is Loading)
-        emptyStateView.isVisible = (state is Success && state.value.regions.isEmpty())
-        errorStateView.isVisible = (state is Failed)
-        regionsRv.isVisible = (state is Success && state.value.regions.isNotEmpty())
+        loadingStateView.isVisible = state is Loading
+        emptyStateView.isVisible = state is Success && state.value.regions.isEmpty()
+        errorStateView.isVisible = state is Failed
+        regionsRv.isVisible = state is Success && state.value.regions.isNotEmpty()
     }
 }

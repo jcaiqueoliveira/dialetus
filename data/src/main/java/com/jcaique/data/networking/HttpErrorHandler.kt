@@ -2,6 +2,8 @@ package com.jcaique.data.networking
 
 import com.jcaique.domain.errors.ErrorTransformer
 import com.jcaique.domain.errors.GatewayIntegrationIssues
+import java.net.HttpURLConnection.HTTP_BAD_REQUEST
+import java.net.HttpURLConnection.HTTP_NOT_FOUND
 import retrofit2.HttpException
 
 internal object HttpErrorHandler : ErrorTransformer {
@@ -11,8 +13,8 @@ internal object HttpErrorHandler : ErrorTransformer {
     }
 
     private fun handleHttpError(code: Int): Throwable = when (code) {
-        404 -> GatewayIntegrationIssues.NotFound
-        in 400..499 -> GatewayIntegrationIssues.ClientIssue
+        HTTP_NOT_FOUND -> GatewayIntegrationIssues.NotFound
+        in HTTP_BAD_REQUEST..499 -> GatewayIntegrationIssues.ClientIssue
         else -> GatewayIntegrationIssues.ServerIssue
     }
 }
