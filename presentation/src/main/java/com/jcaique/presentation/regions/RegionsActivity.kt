@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jcaique.presentation.R
+import com.jcaique.presentation.contributing.ContributingNavigation
 import com.jcaique.presentation.utils.DividerItemDecoration
 import com.jcaique.presentation.utils.dataflow.UserInteraction.OpenedScreen
 import com.jcaique.presentation.utils.dataflow.UserInteraction.RequestedFreshContent
@@ -14,7 +15,7 @@ import com.jcaique.presentation.utils.dataflow.ViewState.Failed
 import com.jcaique.presentation.utils.dataflow.ViewState.Loading
 import com.jcaique.presentation.utils.dataflow.ViewState.Success
 import com.jcaique.presentation.utils.selfInject
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_regions.*
 import kotlinx.android.synthetic.main.error_state_layout.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -28,8 +29,9 @@ class RegionsActivity : AppCompatActivity(), KodeinAware {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_regions)
         init()
+        setupBottomBar()
     }
 
     private fun init() {
@@ -40,6 +42,15 @@ class RegionsActivity : AppCompatActivity(), KodeinAware {
         regionsRv.run {
             layoutManager = LinearLayoutManager(this@RegionsActivity)
             addItemDecoration(DividerItemDecoration(this@RegionsActivity))
+        }
+    }
+
+    private fun setupBottomBar() {
+        setSupportActionBar(bar)
+        val bottom = ContributingNavigation()
+
+        bar.setNavigationOnClickListener {
+            bottom.show(supportFragmentManager, bottom.tag)
         }
     }
 
