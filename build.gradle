@@ -1,14 +1,14 @@
 buildscript {
 
     repositories {
-        mavenLocal()
         google()
+        jcenter()
+        mavenLocal()
         maven { url 'https://kotlin.bintray.com/kotlinx' }
         maven { url 'https://jitpack.io' }
         maven { url 'https://maven.fabric.io/public' }
         maven { url 'https://dl.bintray.com/android/android-tools' }
         maven { url 'https://plugins.gradle.org/m2/' }
-        jcenter()
     }
 
     dependencies {
@@ -16,18 +16,24 @@ buildscript {
         classpath BuildPlugins.kotlinGradlePlugin
         classpath BuildPlugins.kotlinxSerializiationPlugin
         classpath BuildPlugins.ktlint
+        classpath BuildPlugins.detekt
     }
 }
 
 allprojects {
+    apply plugin: 'org.jlleitschuh.gradle.ktlint'
+    apply plugin: 'io.gitlab.arturbosch.detekt'
+    
     repositories {
-        mavenLocal()
         google()
         jcenter()
-
+        mavenLocal()
         maven { url "https://kotlin.bintray.com/kotlinx" }
-
         maven { url 'https://jitpack.io' }
+    }
+    
+    detekt {
+        config = files("${rootDir}/detekt.yml")
     }
 
     configurations.all {

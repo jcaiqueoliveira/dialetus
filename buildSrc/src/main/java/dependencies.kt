@@ -4,6 +4,7 @@ object Versions {
     const val androidGradleSupport = "3.5.1"
     const val gmsSupport = "4.3.2"
     const val ktlint = "9.0.0"
+    const val detekt = "1.1.1"
 
     const val okhttp4 = "4.2.1"
     const val retrofit2 = "2.6.2"
@@ -95,6 +96,7 @@ object BuildPlugins {
     val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     val kotlinxSerializiationPlugin = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
     val ktlint = "org.jlleitschuh.gradle:ktlint-gradle:${Versions.ktlint}"
+    val detekt = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detekt}"
 
     val gmsPlugin = "com.google.gms:google-services:${Versions.gmsSupport}"
     val firebaseCrashlytics = "io.fabric.tools:gradle:${Versions.fabric}"
