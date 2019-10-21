@@ -14,9 +14,9 @@ import kotlinx.android.synthetic.main.regions_menu_view.*
 internal class ContributingNavigation : BottomSheetDialogFragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+      inflater: LayoutInflater,
+      container: ViewGroup?,
+      savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.regions_menu_view, container, false)
     }

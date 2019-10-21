@@ -7,8 +7,8 @@ import com.jcaique.presentation.utils.dataflow.UnsupportedUserInteraction
 import com.jcaique.presentation.utils.dataflow.UserInteraction
 
 internal class RegionsViewModel(
-    private val service: RegionsService,
-    private val machine: StateMachine<RegionsPresentation>
+  private val service: RegionsService,
+  private val machine: StateMachine<RegionsPresentation>
 ) {
 
     fun bind() = machine.states()
