@@ -44,4 +44,15 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/errorStateView"/>
 
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:navigationIcon="@drawable/ic_menu"
+        app:backgroundTint="@color/colorPrimary"
+        app:hideOnScroll="true"
+        app:fabAlignmentMode="end"
+        />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
