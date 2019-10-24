@@ -1,12 +1,14 @@
-package com.jcaique.presentation.utils.dataflow
+package com.jcaique.utils.dataflow
 
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.asFlow
 
-internal class CommandsProcessor(
-  private val executor: TaskExecutor
+class CommandsProcessor(
+    private val executor: TaskExecutor
 ) {
 
+    @ExperimentalCoroutinesApi
     private val broadcaster = ConflatedBroadcastChannel<ViewCommand>()
 
     fun commands() = broadcaster.asFlow()

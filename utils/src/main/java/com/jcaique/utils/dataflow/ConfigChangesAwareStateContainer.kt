@@ -1,4 +1,4 @@
-package com.jcaique.presentation.utils.dataflow
+package com.jcaique.utils.dataflow
 
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.asFlow
 
-internal class ConfigChangesAwareStateContainer<T> : StateContainer<T>, ViewModel() {
+class ConfigChangesAwareStateContainer<T> : StateContainer<T>, ViewModel() {
 
     private val broadcaster by lazy {
         ConflatedBroadcastChannel<ViewState<T>>(ViewState.FirstLaunch)

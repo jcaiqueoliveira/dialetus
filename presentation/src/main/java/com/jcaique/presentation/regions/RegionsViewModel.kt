@@ -1,10 +1,10 @@
 package com.jcaique.presentation.regions
 
 import com.jcaique.domain.regions.RegionsService
-import com.jcaique.presentation.utils.dataflow.StateMachine
-import com.jcaique.presentation.utils.dataflow.StateTransition
-import com.jcaique.presentation.utils.dataflow.UnsupportedUserInteraction
-import com.jcaique.presentation.utils.dataflow.UserInteraction
+import com.jcaique.utils.dataflow.StateMachine
+import com.jcaique.utils.dataflow.StateTransition
+import com.jcaique.utils.dataflow.UnsupportedUserInteraction
+import com.jcaique.utils.dataflow.UserInteraction
 
 internal class RegionsViewModel(
   private val service: RegionsService,

@@ -1,10 +1,10 @@
-package com.jcaique.presentation.utils.dataflow
+package com.jcaique.utils.dataflow
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.flow.asFlow
 
-internal interface StateContainer<T> : ViewStateRegistry<T>, ViewStatesEmitter<T> {
+interface StateContainer<T> : ViewStateRegistry<T>, ViewStatesEmitter<T> {
 
     class Unbounded<T>(scopeToBound: CoroutineScope) : StateContainer<T> {
 

@@ -1,16 +1,16 @@
-package com.jcaique.presentation.utils.dataflow
+package com.jcaique.utils.dataflow
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 
-internal interface ViewStatesEmitter<T> {
+interface ViewStatesEmitter<T> {
 
     fun observableStates(): Flow<ViewState<T>>
 
     val emissionScope: CoroutineScope
 }
 
-internal interface ViewStateRegistry<T> {
+interface ViewStateRegistry<T> {
 
     fun current(): ViewState<T>
 

@@ -4,10 +4,10 @@ import com.jcaique.presentation.dialects.DialectsPresentation
 import com.jcaique.presentation.dialects.DialectsViewModel
 import com.jcaique.presentation.regions.RegionsPresentation
 import com.jcaique.presentation.regions.RegionsViewModel
-import com.jcaique.presentation.utils.KodeinTags
-import com.jcaique.presentation.utils.dataflow.ConfigChangesAwareStateContainer
-import com.jcaique.presentation.utils.dataflow.StateMachine
-import com.jcaique.presentation.utils.dataflow.TaskExecutor
+import com.jcaique.utils.KodeinTags
+import com.jcaique.utils.dataflow.ConfigChangesAwareStateContainer
+import com.jcaique.utils.dataflow.StateMachine
+import com.jcaique.utils.dataflow.TaskExecutor
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance

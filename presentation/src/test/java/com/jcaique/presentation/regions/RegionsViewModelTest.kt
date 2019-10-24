@@ -5,11 +5,11 @@ import com.jcaique.domain.models.Region
 import com.jcaique.domain.regions.RegionsService
 import com.jcaique.presentation.common.CoroutinesTestHelper
 import com.jcaique.presentation.common.FlowTest.Companion.flowTest
-import com.jcaique.presentation.utils.dataflow.StateContainer
-import com.jcaique.presentation.utils.dataflow.StateMachine
-import com.jcaique.presentation.utils.dataflow.TaskExecutor
-import com.jcaique.presentation.utils.dataflow.UserInteraction
-import com.jcaique.presentation.utils.dataflow.ViewState
+import com.jcaique.utils.dataflow.StateContainer
+import com.jcaique.utils.dataflow.StateMachine
+import com.jcaique.utils.dataflow.TaskExecutor
+import com.jcaique.utils.dataflow.UserInteraction
+import com.jcaique.utils.dataflow.ViewState
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import org.assertj.core.api.Java6Assertions.assertThat

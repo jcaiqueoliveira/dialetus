@@ -1,11 +1,11 @@
-package com.jcaique.presentation.utils
+package com.jcaique.utils
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.jcaique.presentation.utils.KodeinTags.hostActivity
+import com.jcaique.utils.KodeinTags.hostActivity
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.direct

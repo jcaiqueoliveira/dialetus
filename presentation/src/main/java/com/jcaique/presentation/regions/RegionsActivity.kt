@@ -7,6 +7,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jcaique.domain.models.Region
 import com.jcaique.presentation.R
+import com.jcaique.utils.DividerItemDecoration
+import com.jcaique.utils.dataflow.UserInteraction.OpenedScreen
+import com.jcaique.utils.dataflow.UserInteraction.RequestedFreshContent
+import com.jcaique.utils.dataflow.ViewState
+import com.jcaique.utils.dataflow.ViewState.*
+import com.jcaique.utils.selfInject
+import kotlinx.android.synthetic.main.activity_main.*
 import com.jcaique.presentation.contributing.ContributingNavigation
 import com.jcaique.presentation.dialects.DialectsActivity
 import com.jcaique.presentation.utils.DividerItemDecoration
@@ -19,9 +26,9 @@ import com.jcaique.presentation.utils.dataflow.ViewState.Success
 import com.jcaique.presentation.utils.selfInject
 import kotlinx.android.synthetic.main.activity_regions.*
 import kotlinx.android.synthetic.main.error_state_layout.*
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
+import kotlinx.coroutines.flow.collect
 import org.kodein.di.generic.instance
 
 class RegionsActivity : AppCompatActivity(), KodeinAware {
