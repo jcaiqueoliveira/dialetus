@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.jcaique.presentation.R
-import com.jcaique.presentation.utils.dataflow.UnsupportedUserInteraction
+import com.jcaique.utils.dataflow.UnsupportedUserInteraction
 import kotlinx.android.synthetic.main.regions_menu_view.*
 
 internal class ContributingNavigation : BottomSheetDialogFragment() {

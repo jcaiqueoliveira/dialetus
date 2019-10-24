@@ -6,10 +6,6 @@ import com.jcaique.utils.dataflow.CommandTrigger
 import com.jcaique.utils.dataflow.CommandsProcessor
 import com.jcaique.utils.dataflow.TaskExecutor
 import com.jcaique.utils.dataflow.ViewCommand
-import com.jcaique.presentation.utils.dataflow.CommandTrigger
-import com.jcaique.presentation.utils.dataflow.CommandsProcessor
-import com.jcaique.presentation.utils.dataflow.TaskExecutor
-import com.jcaique.presentation.utils.dataflow.ViewCommand
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import org.assertj.core.api.Assertions.assertThat
