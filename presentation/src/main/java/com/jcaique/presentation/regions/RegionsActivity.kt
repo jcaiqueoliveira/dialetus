@@ -2,11 +2,14 @@ package com.jcaique.presentation.regions
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jcaique.domain.models.Region
 import com.jcaique.presentation.R
 import com.jcaique.presentation.contributing.ContributingNavigation
+import com.jcaique.presentation.dialects.DialectsActivity
 import com.jcaique.presentation.utils.DividerItemDecoration
 import com.jcaique.presentation.utils.dataflow.UserInteraction.OpenedScreen
 import com.jcaique.presentation.utils.dataflow.UserInteraction.RequestedFreshContent
@@ -36,12 +39,21 @@ class RegionsActivity : AppCompatActivity(), KodeinAware {
 
     private fun init() {
         viewModel.handle(OpenedScreen)
+
         lifecycleScope.launch {
             viewModel.bind().collect { handle(it) }
         }
+
         regionsRv.run {
             layoutManager = LinearLayoutManager(this@RegionsActivity)
-            addItemDecoration(DividerItemDecoration(this@RegionsActivity))
+            addItemDecoration(
+                DividerItemDecoration(this@RegionsActivity)
+                    .also {
+                        ContextCompat
+                            .getDrawable(this@RegionsActivity, R.drawable.divider)
+                            ?.let(it::setDrawable)
+                    }
+            )
         }
     }
 
@@ -72,7 +84,8 @@ class RegionsActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun setupContent(value: RegionsPresentation) {
-        regionsRv.adapter = RegionAdapter(value)
+        regionsRv.adapter =
+            RegionAdapter(value, ::navigateToDialects)
     }
 
     private fun controlVisibilities(state: ViewState<RegionsPresentation>) {
@@ -81,4 +94,7 @@ class RegionsActivity : AppCompatActivity(), KodeinAware {
         errorStateView.isVisible = state is Failed
         regionsRv.isVisible = state is Success && state.value.regions.isNotEmpty()
     }
+
+    private fun navigateToDialects(region: Region) =
+        DialectsActivity.newInstance(this, region)
 }

@@ -9,8 +9,9 @@ import com.jcaique.presentation.R
 import kotlinx.android.synthetic.main.item_region.view.*
 
 internal class RegionAdapter(
-  private val presentation: RegionsPresentation
-) : RecyclerView.Adapter<RegionHolder>() {
+  private val presentation: RegionsPresentation,
+  private val onClick: (Region) -> Unit
+) : RecyclerView.Adapter<RegionAdapter.RegionHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RegionHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -23,14 +24,15 @@ internal class RegionAdapter(
     override fun onBindViewHolder(holder: RegionHolder, position: Int) {
         holder.bind(presentation.regions[position])
     }
-}
 
-internal class RegionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class RegionHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(row: Region) {
-        itemView.regionName.text = row.name
-        itemView.run {
-            setOnClickListener { }
+        fun bind(row: Region) = itemView.apply {
+            regionName.text = row.name
+
+            setOnClickListener {
+                onClick(row)
+            }
         }
     }
 }

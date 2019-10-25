@@ -329,7 +329,7 @@ naming:
     active: false
     rootPackage: ''
   MatchingDeclarationName:
-    active: true
+    active: false
   MemberNameEqualsClassName:
     active: false
     ignoreOverriddenFunction: true

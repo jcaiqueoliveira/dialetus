@@ -1,5 +1,7 @@
 package com.jcaique.presentation.di
 
+import com.jcaique.presentation.dialects.DialectsPresentation
+import com.jcaique.presentation.dialects.DialectsViewModel
 import com.jcaique.presentation.regions.RegionsPresentation
 import com.jcaique.presentation.regions.RegionsViewModel
 import com.jcaique.presentation.utils.KodeinTags
@@ -14,9 +16,10 @@ import org.kodein.di.generic.provider
 val presentationModule = Kodein.Module(name = "presentation") {
 
     bind() from provider {
-        val stateContainer = ConfigChangesAwareStateContainer<RegionsPresentation>(
-            host = instance(KodeinTags.hostActivity)
-        )
+        val stateContainer =
+            ConfigChangesAwareStateContainer<RegionsPresentation>(
+                host = instance(KodeinTags.hostActivity)
+            )
         val stateMachine = StateMachine(
             container = stateContainer,
             executor = TaskExecutor.Concurrent(
@@ -27,6 +30,24 @@ val presentationModule = Kodein.Module(name = "presentation") {
 
         RegionsViewModel(
             service = instance(),
+            machine = stateMachine
+        )
+    }
+
+    bind() from provider {
+        val stateContainer =
+            ConfigChangesAwareStateContainer<DialectsPresentation>(
+                host = instance(KodeinTags.hostActivity)
+            )
+        val stateMachine = StateMachine(
+            container = stateContainer,
+            executor = TaskExecutor.Concurrent(
+                scope = stateContainer.emissionScope,
+                dispatcher = instance()
+            )
+        )
+
+        DialectsViewModel(
             machine = stateMachine
         )
     }

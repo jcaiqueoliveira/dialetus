@@ -5,25 +5,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
-
+    android:fitsSystemWindows="true"
+    android:background="@color/lightGray">
+    
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:layout_height="wrap_content"
+            android:id="@+id/dialectsToolBar"
             android:layout_width="match_parent"
-            android:id="@+id/toolBarMainActivity"
+            android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
-            app:title="Dialetus"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"/>
-    
+            android:background="@color/white"
+            android:elevation="4dp"
+            tools:title="Baianes"
+            app:navigationIcon="@drawable/ic_arrow_back"/>
+        
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/regionsRv"
+        android:id="@+id/dialectsRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
@@ -38,21 +40,12 @@
     <include layout="@layout/empty_state_layout"
         android:visibility="gone"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:id="@+id/emptyStateView" />
+        android:id="@+id/emptyStateView"
+        />
 
     <include layout="@layout/error_state_layout"
         android:visibility="gone"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/errorStateView"/>
-
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:navigationIcon="@drawable/ic_menu"
-        app:backgroundTint="@color/colorPrimary"
-        app:hideOnScroll="true"
-        app:fabAlignmentMode="end"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

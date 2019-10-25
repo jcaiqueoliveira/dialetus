@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    app:contentPadding="16dp"
+    app:cardCornerRadius="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/dialectTitle"
+            tools:text="É com você, Bob Marley e As Baleias"
+            style="@style/DialectCardTitle"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/meaningLabel"
+            android:text="@string/meaning"
+            style="@style/DialectCardLabel"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/meaningValue"
+            tools:text="Problema seu e dos outros.\nFaz referência à banda The Wailers, que possui pronúncia similar a The Whales (As Baleias)."
+            style="@style/DialectCardValue"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/examplesLabel"
+            android:text="@string/examples"
+            style="@style/DialectCardLabel" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/examplesValue"
+            tools:text="Vei isso aí é com você, Bob Marley e as baleias, não me meta nisso não."
+            style="@style/DialectCardValue"/>
+
+    </LinearLayout>
+    
+</com.google.android.material.card.MaterialCardView>
