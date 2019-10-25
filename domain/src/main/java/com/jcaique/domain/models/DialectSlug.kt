@@ -1,3 +1,5 @@
 package com.jcaique.domain.models
 
-inline class DialectSlug(val slug: String)
+import java.io.Serializable
+
+inline class DialectSlug(val slug: String) : Serializable

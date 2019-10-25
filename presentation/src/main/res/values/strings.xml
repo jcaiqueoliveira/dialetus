@@ -7,4 +7,6 @@
     <string name="title_no_events_found">Nenhum dialeto cadastrado</string>
     <string name="text_description_no_dialects_found">Não foi encontrado nenhum dialeto ou região.</string>
     <string name="menu_android">Contribuir com o aplicativo</string>
+    <string name="meaning">Significado</string>
+    <string name="examples">Exemplos</string>
 </resources>
