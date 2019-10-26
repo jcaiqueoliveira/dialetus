@@ -1,5 +1,6 @@
 package com.jcaique.presentation.dialects
 
+import com.jcaique.domain.dialects.DialectsService
 import com.jcaique.domain.models.Dialect
 import com.jcaique.utils.dataflow.StateMachine
 import com.jcaique.utils.dataflow.StateTransition
@@ -8,33 +9,11 @@ import com.jcaique.utils.dataflow.UserInteraction
 import kotlinx.coroutines.coroutineScope
 
 internal class DialectsViewModel(
-    private val machine: StateMachine<DialectsPresentation>
-    // TODO inject dialects service
+    private val machine: StateMachine<DialectsPresentation>,
+    private val service: DialectsService
 ) {
 
-    // TODO mocked result
-    private val dialects by lazy {
-        listOf(
-            Dialect(
-                slug = "lasquei-em-banda",
-                dialect = "Lasquei em banda",
-                meanings = listOf("Sem pena", "Abrupto"),
-                examples = listOf("Oxe man, lasquei foi em banda mermo, quis nem saber.")
-            ),
-            Dialect(
-                slug = "lasquei-em-banda",
-                dialect = "Lasquei em banda",
-                meanings = listOf("Sem pena", "Abrupto"),
-                examples = listOf("Oxe man, lasquei foi em banda mermo, quis nem saber.")
-            ),
-            Dialect(
-                slug = "lasquei-em-banda",
-                dialect = "Lasquei em banda",
-                meanings = listOf("Sem pena", "Abrupto"),
-                examples = listOf("Oxe man, lasquei foi em banda mermo, quis nem saber.")
-            )
-        )
-    }
+    private var dialects = emptyList<Dialect>()
 
     fun bind() = machine.states()
 
@@ -55,7 +34,9 @@ internal class DialectsViewModel(
         parameters: StateTransition.Parameters
     ): DialectsPresentation = coroutineScope {
         val interaction = parameters as ShowDialects
-        
+
+        dialects = service.getDialectsBy(interaction.region.name.toLowerCase())
+
         dialects
             .let(::DialectsPresentation)
     }

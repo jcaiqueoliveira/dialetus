@@ -48,7 +48,8 @@ val presentationModule = Kodein.Module(name = "presentation") {
         )
 
         DialectsViewModel(
-            machine = stateMachine
+            machine = stateMachine,
+            service = instance()
         )
     }
 }
