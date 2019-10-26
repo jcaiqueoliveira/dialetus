@@ -1,13 +1,13 @@
 <manifest 
     xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jcaique.presentation">
+    package="com.jcaique.dialetus.presentation">
     
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application android:theme="@style/AppTheme">
+    <application>
         
         <activity 
-            android:name="com.jcaique.presentation.regions.RegionsActivity"
+            android:name=".regions.RegionsActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,7 +16,7 @@
         </activity>
         
         <activity 
-            android:name="com.jcaique.presentation.dialects.DialectsActivity"
+            android:name=".dialects.DialectsActivity"
             android:screenOrientation="portrait"/>
     </application>
 </manifest>

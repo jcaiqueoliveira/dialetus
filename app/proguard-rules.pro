@@ -8,11 +8,11 @@
 # kotlinx.serialization
 -keepattributes *Annotation*, InnerClasses
 -dontnote kotlinx.serialization.SerializationKt
--keep,includedescriptorclasses class com.jcaique.domain.models.**$$serializer { *; }
--keepclassmembers class com.jcaique.domain.models.** {
+-keep,includedescriptorclasses class com.jcaique.dialetus.domain.models.**$$serializer { *; }
+-keepclassmembers class com.jcaique.dialetus.domain.models.** {
     *** Companion;
 }
--keepclasseswithmembers class com.jcaique.domain.models.** {
+-keepclasseswithmembers class com.jcaique.dialetus.domain.models.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
 
