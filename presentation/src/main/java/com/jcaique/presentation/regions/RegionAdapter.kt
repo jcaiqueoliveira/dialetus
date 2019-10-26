@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.item_region.view.*
 
 internal class RegionAdapter(
   private val presentation: RegionsPresentation,
-  private val onClick: (Region) -> Unit
+  private val onClicked: (Region) -> Unit
 ) : RecyclerView.Adapter<RegionAdapter.RegionHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RegionHolder {
@@ -30,9 +30,7 @@ internal class RegionAdapter(
         fun bind(row: Region) = itemView.apply {
             regionName.text = row.name
 
-            setOnClickListener {
-                onClick(row)
-            }
+            setOnClickListener { onClicked(row) }
         }
     }
 }

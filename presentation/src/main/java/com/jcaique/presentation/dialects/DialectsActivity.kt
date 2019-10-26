@@ -8,12 +8,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jcaique.domain.models.Dialect
 import com.jcaique.domain.models.Region
 import com.jcaique.presentation.R
+import com.jcaique.presentation.contributing.ContributingConst
 import com.jcaique.presentation.utils.DividerItemDecoration
 import com.jcaique.presentation.utils.dataflow.UserInteraction
 import com.jcaique.presentation.utils.dataflow.ViewState
 import com.jcaique.presentation.utils.selfInject
+import com.jcaique.presentation.utils.share
 import kotlinx.android.synthetic.main.activity_dialects.*
 import kotlinx.android.synthetic.main.activity_regions.emptyStateView
 import kotlinx.android.synthetic.main.activity_regions.errorStateView
@@ -94,9 +97,26 @@ class DialectsActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun setupContent(value: DialectsPresentation) {
-        dialectsRv.adapter = DialectAdapter(value)
+        dialectsRv.adapter = DialectAdapter(value, ::shareDialect)
     }
 
+    private fun shareDialect(dialect: Dialect) = dialect.run {
+        """
+        |${this.dialect}
+        |
+        |${getString(R.string.meaning)}:
+        |${meanings.joinToString(separator = "\n") { "- $it" }}
+        |
+        |${getString(R.string.examples)}:
+        |${examples.joinToString(separator = "\n") { "- $it" }}
+        |
+        |
+        |${getString(R.string.more_dialects_on, ContributingConst.WEB)}
+        """
+            .trimMargin()
+            .share(this@DialectsActivity)
+    }
+    
     private fun controlVisibilities(state: ViewState<DialectsPresentation>) {
         loadingStateView.isVisible = state is ViewState.Loading
         emptyStateView.isVisible = state is ViewState.Success && state.value.dialects.isEmpty()
