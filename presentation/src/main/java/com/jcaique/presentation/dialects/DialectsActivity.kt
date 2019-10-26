@@ -94,7 +94,7 @@ class DialectsActivity : AppCompatActivity(), KodeinAware {
     private fun setupRetry() {
         errorStateView.let {
             tryAgainBtn.setOnClickListener {
-                viewModel.handle(UserInteraction.RequestedFreshContent)
+                viewModel.handle(ShowDialects(region))
             }
         }
     }
