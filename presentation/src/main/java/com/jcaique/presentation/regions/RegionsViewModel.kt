@@ -13,9 +13,10 @@ internal class RegionsViewModel(
 
     fun bind() = machine.states()
 
-    fun handle(interaction: UserInteraction) =
+    fun handle(interaction: UserInteraction) {
         interpret(interaction)
             .let(machine::consume)
+    }
 
     private fun interpret(interaction: UserInteraction) =
         when (interaction) {

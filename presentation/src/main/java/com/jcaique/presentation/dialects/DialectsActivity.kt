@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jcaique.domain.models.Dialect
@@ -53,13 +54,13 @@ class DialectsActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun init() {
-        viewModel.handle(UserInteraction.OpenedScreen)
+        viewModel.handle(ShowDialects(region))
         
         lifecycleScope.launch {
             viewModel.bind().collect { handle(it) }
         }
         
-        dialectsRv.run {
+        dialectsList.run {
             layoutManager = LinearLayoutManager(this@DialectsActivity)
             addItemDecoration(
                 DividerItemDecoration(this@DialectsActivity)
@@ -70,6 +71,8 @@ class DialectsActivity : AppCompatActivity(), KodeinAware {
                     }
             )
         }
+        
+        dialectsFilter.addTextChangedListener { filterDialects() }
     }
     
     private fun setupToolbar() {
@@ -97,7 +100,14 @@ class DialectsActivity : AppCompatActivity(), KodeinAware {
     }
 
     private fun setupContent(value: DialectsPresentation) {
-        dialectsRv.adapter = DialectAdapter(value, ::shareDialect)
+        dialectsList.adapter = DialectAdapter(value, ::shareDialect)
+    }
+    
+    private fun filterDialects() {
+        dialectsFilter.text
+            ?.toString()
+            ?.let(::FilterDialects)
+            ?.let(viewModel::handle)
     }
 
     private fun shareDialect(dialect: Dialect) = dialect.run {
@@ -121,6 +131,6 @@ class DialectsActivity : AppCompatActivity(), KodeinAware {
         loadingStateView.isVisible = state is ViewState.Loading
         emptyStateView.isVisible = state is ViewState.Success && state.value.dialects.isEmpty()
         errorStateView.isVisible = state is ViewState.Failed
-        dialectsRv.isVisible = state is ViewState.Success && state.value.dialects.isNotEmpty()
+        dialectsList.isVisible = state is ViewState.Success && state.value.dialects.isNotEmpty()
     }
 }
