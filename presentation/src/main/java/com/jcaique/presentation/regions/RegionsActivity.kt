@@ -2,7 +2,6 @@ package com.jcaique.presentation.regions
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,14 +45,7 @@ class RegionsActivity : AppCompatActivity(), KodeinAware {
 
         regionsRv.run {
             layoutManager = LinearLayoutManager(this@RegionsActivity)
-            addItemDecoration(
-                DividerItemDecoration(this@RegionsActivity)
-                    .also {
-                        ContextCompat
-                            .getDrawable(this@RegionsActivity, R.drawable.divider)
-                            ?.let(it::setDrawable)
-                    }
-            )
+            addItemDecoration(DividerItemDecoration(this@RegionsActivity))
         }
     }
 

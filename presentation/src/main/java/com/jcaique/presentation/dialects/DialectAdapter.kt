@@ -9,7 +9,8 @@ import com.jcaique.presentation.R
 import kotlinx.android.synthetic.main.item_dialect.view.*
 
 internal class DialectAdapter(
-  private val presentation: DialectsPresentation
+    private val presentation: DialectsPresentation,
+    private val onShareClicked: (Dialect) -> Unit
 ) : RecyclerView.Adapter<DialectAdapter.DialectHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DialectHolder {
@@ -28,8 +29,10 @@ internal class DialectAdapter(
 
         fun bind(row: Dialect) = itemView.apply {
             dialectTitle.text = row.dialect
-            meaningValue.text = row.meanings.joinToString("\n")
-            examplesValue.text = row.examples.joinToString("\n")
+            dialectMeaning.text = row.meanings.joinToString(separator = "\n")
+            dialectExamples.text = row.examples.joinToString(separator = "\n")
+
+            dialectShare.setOnClickListener { onShareClicked(row) }
         }
     }
 }

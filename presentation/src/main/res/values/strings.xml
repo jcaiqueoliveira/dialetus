@@ -9,4 +9,5 @@
     <string name="menu_android">Contribuir com o aplicativo</string>
     <string name="meaning">Significado</string>
     <string name="examples">Exemplos</string>
+    <string name="more_dialects_on">Mais dialetos em %s</string>
 </resources>
