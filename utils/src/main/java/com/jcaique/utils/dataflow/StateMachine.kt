@@ -1,8 +1,8 @@
-package com.jcaique.presentation.utils.dataflow
+package com.jcaique.utils.dataflow
 
-internal class StateMachine<T>(
-  private val container: StateContainer<T>,
-  private val executor: TaskExecutor
+class StateMachine<T>(
+    private val container: StateContainer<T>,
+    private val executor: TaskExecutor
 ) {
 
     fun states() = container.observableStates()

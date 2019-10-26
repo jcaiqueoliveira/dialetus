@@ -1,4 +1,4 @@
-package com.jcaique.presentation.utils.dataflow
+package com.jcaique.utils.dataflow
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -6,7 +6,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-internal interface TaskExecutor {
+interface TaskExecutor {
 
     fun execute(block: suspend TaskExecutor.() -> Unit): Job
 

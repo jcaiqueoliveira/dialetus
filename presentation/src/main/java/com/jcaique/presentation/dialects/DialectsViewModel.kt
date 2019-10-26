@@ -1,12 +1,11 @@
 package com.jcaique.presentation.dialects
 
 import com.jcaique.domain.models.Dialect
-import com.jcaique.presentation.utils.dataflow.StateMachine
-import com.jcaique.presentation.utils.dataflow.StateTransition
-import com.jcaique.presentation.utils.dataflow.UnsupportedUserInteraction
-import com.jcaique.presentation.utils.dataflow.UserInteraction
+import com.jcaique.utils.dataflow.StateMachine
+import com.jcaique.utils.dataflow.StateTransition
+import com.jcaique.utils.dataflow.UnsupportedUserInteraction
+import com.jcaique.utils.dataflow.UserInteraction
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
 
 internal class DialectsViewModel(
     private val machine: StateMachine<DialectsPresentation>

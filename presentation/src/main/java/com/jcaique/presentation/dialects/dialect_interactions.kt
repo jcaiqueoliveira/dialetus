@@ -1,8 +1,8 @@
 package com.jcaique.presentation.dialects
 
 import com.jcaique.domain.models.Region
-import com.jcaique.presentation.utils.dataflow.StateTransition
-import com.jcaique.presentation.utils.dataflow.UserInteraction
+import com.jcaique.utils.dataflow.StateTransition
+import com.jcaique.utils.dataflow.UserInteraction
 
 data class ShowDialects(val region: Region) : UserInteraction, StateTransition.Parameters
 

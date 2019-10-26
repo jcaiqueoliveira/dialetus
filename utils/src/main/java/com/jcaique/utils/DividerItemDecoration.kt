@@ -1,4 +1,4 @@
-package com.jcaique.presentation.utils
+package com.jcaique.utils
 
 import android.content.Context
 import android.graphics.Canvas
@@ -18,7 +18,7 @@ import kotlin.math.roundToInt
  * @param context Current context, it will be used to access resources.
  * @param orientation Divider orientation. Should be [.HORIZONTAL] or [.VERTICAL].
  */
-internal class DividerItemDecoration(context: Context, orientation: Int = LinearLayout.VERTICAL) :
+class DividerItemDecoration(context: Context, orientation: Int = LinearLayout.VERTICAL) :
     RecyclerView.ItemDecoration() {
 
     private var mDivider: Drawable? = null

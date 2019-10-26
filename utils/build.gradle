@@ -1,16 +1,9 @@
 apply plugin: 'com.android.library'
 apply from: "../android-module.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 dependencies {
-
-    implementation project(':domain')
-    implementation project(':data')
-    implementation project(':utils')
-
-    implementation Dependencies.androidxConstraintLayout
-    implementation Dependencies.coroutines
-    implementation Dependencies.coroutinesAndroid
-
     AndroidModule.main.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }
     AndroidModule.androidTesting.forEach { androidTestImplementation it }

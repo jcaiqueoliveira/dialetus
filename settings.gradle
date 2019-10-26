@@ -1,2 +1,2 @@
-include ':app', ':data', ':presentation', ':domain'
+include ':app', ':data', ':presentation', ':domain', ':utils'
 rootProject.name='Dialetus'

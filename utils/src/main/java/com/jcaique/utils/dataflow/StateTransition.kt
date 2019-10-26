@@ -1,6 +1,6 @@
-package com.jcaique.presentation.utils.dataflow
+package com.jcaique.utils.dataflow
 
-internal sealed class StateTransition<out T> {
+sealed class StateTransition<out T> {
 
     interface Parameters
 

@@ -2,10 +2,10 @@ package com.jcaique.presentation.dataflow
 
 import com.jcaique.presentation.common.CoroutinesTestHelper
 import com.jcaique.presentation.common.test
-import com.jcaique.presentation.utils.dataflow.CommandTrigger
-import com.jcaique.presentation.utils.dataflow.CommandsProcessor
-import com.jcaique.presentation.utils.dataflow.TaskExecutor
-import com.jcaique.presentation.utils.dataflow.ViewCommand
+import com.jcaique.utils.dataflow.CommandTrigger
+import com.jcaique.utils.dataflow.CommandsProcessor
+import com.jcaique.utils.dataflow.TaskExecutor
+import com.jcaique.utils.dataflow.ViewCommand
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import org.assertj.core.api.Assertions.assertThat
@@ -40,7 +40,10 @@ internal class CommandsProcessorTests {
 
                 triggerEmissions {
                     process(
-                        CommandTrigger(::generateCommand, Interaction)
+                        CommandTrigger(
+                            ::generateCommand,
+                            Interaction
+                        )
                     )
                 }
 
@@ -48,7 +51,9 @@ internal class CommandsProcessorTests {
 
                     val commands = listOf(
                         Finish,
-                        FinishWithMessage(MESSAGE)
+                        FinishWithMessage(
+                            MESSAGE
+                        )
                     )
 
                     assertThat(emissions).isEqualTo(commands)
@@ -65,7 +70,11 @@ internal class CommandsProcessorTests {
     private suspend fun generateCommand(params: CommandTrigger.Parameters) =
         suspendCoroutine<ViewCommand> { continuation ->
             val interaction = params as Interaction
-            continuation.resume(FinishWithMessage(interaction.MESSAGE))
+            continuation.resume(
+                FinishWithMessage(
+                    MESSAGE
+                )
+            )
         }
 
     private companion object Interaction : CommandTrigger.Parameters {

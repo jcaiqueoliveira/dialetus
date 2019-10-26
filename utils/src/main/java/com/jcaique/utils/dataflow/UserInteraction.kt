@@ -1,6 +1,6 @@
-package com.jcaique.presentation.utils.dataflow
+package com.jcaique.utils.dataflow
 
-internal interface UserInteraction {
+interface UserInteraction {
     object OpenedScreen : UserInteraction
     object RequestedFreshContent : UserInteraction
 }

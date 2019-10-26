@@ -1,6 +1,6 @@
-package com.jcaique.presentation.utils.dataflow
+package com.jcaique.utils.dataflow
 
-internal sealed class ViewState<out T> {
+sealed class ViewState<out T> {
 
     object FirstLaunch : ViewState<Nothing>()
 
