@@ -1,8 +1,8 @@
 package com.jcaique.dialetus
 
 import android.app.Application
-import com.jcaique.data.di.dataModule
-import com.jcaique.presentation.di.presentationModule
+import com.jcaique.dialetus.data.di.dataModule
+import com.jcaique.dialetus.presentation.di.presentationModule
 import kotlinx.coroutines.Dispatchers
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
