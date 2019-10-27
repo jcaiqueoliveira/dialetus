@@ -52,7 +52,9 @@ android {
         }
 
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
+            crunchPngs true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -95,8 +97,6 @@ dependencies {
 
     implementation Dependencies.okhttp
     implementation Dependencies.okhttpInterceptor
-
-    implementation Dependencies.androidxConstraintLayout
 
     AndroidModule.main.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }
