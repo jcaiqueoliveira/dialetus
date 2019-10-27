@@ -6,6 +6,7 @@ import com.jcaique.dialetus.utils.dataflow.StateMachine
 import com.jcaique.dialetus.utils.dataflow.StateTransition
 import com.jcaique.dialetus.utils.dataflow.UnsupportedUserInteraction
 import com.jcaique.dialetus.utils.dataflow.UserInteraction
+import com.jcaique.dialetus.utils.extensions.normalize
 import kotlinx.coroutines.coroutineScope
 
 internal class DialectsViewModel(
@@ -35,15 +36,13 @@ internal class DialectsViewModel(
             else -> throw UnsupportedUserInteraction
         }
 
-    // TODO get dialects from service
     private suspend fun showDialects(
         parameters: StateTransition.Parameters
     ): DialectsPresentation = coroutineScope {
         val interaction = parameters as ShowDialects
 
-        dialects = service.getDialectsBy(interaction.region.name.toLowerCase())
-
-        dialects
+        service
+            .getDialectsBy(interaction.region.name.toLowerCase())
             .let(::DialectsPresentation)
     }
         
@@ -53,7 +52,14 @@ internal class DialectsViewModel(
         val interaction = parameters as FilterDialects
         
         dialects
-            .filter { it.dialect.contains(interaction.query, ignoreCase = true) }
+            .filter { 
+                it.dialect
+                    .normalize()
+                    .contains(
+                        other = interaction.query.normalize(), 
+                        ignoreCase = true
+                    ) 
+            }
             .let(::DialectsPresentation)
     }
 }
