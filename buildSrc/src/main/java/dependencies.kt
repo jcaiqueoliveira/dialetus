@@ -122,30 +122,21 @@ object AndroidModule {
 
     val main = listOf(
         Dependencies.kotlinStdlib,
-        Dependencies.kotlinReflect,
         Dependencies.androidxActivity,
-        Dependencies.androidxAppCompat,
         Dependencies.androidxCardView,
-        Dependencies.androidxGridLayout,
         Dependencies.androidxRecyclerView,
-        Dependencies.androidxLifecycleCommon,
-        Dependencies.androidxLifecycleCommonJava8,
         Dependencies.androidxLifecycleExtensions,
-        Dependencies.groupie,
-        Dependencies.groupieKTX,
         Dependencies.materialDesign,
         Dependencies.kodein,
         Dependencies.kodeinConf,
         Dependencies.kodeinAndroid,
-        Dependencies.androidxLifecycleViewModel,
-        Dependencies.androidxConstraintLayout
+        Dependencies.androidxLifecycleViewModel
     )
 
     val unitTesting = listOf(
         Dependencies.slf4jNoOp,
         Dependencies.jUnit,
         Dependencies.assertJ,
-        Dependencies.kotlinReflect,
         Dependencies.mockitoKotlin,
         Dependencies.slf4j,
         Dependencies.coroutinesTest
@@ -154,7 +145,6 @@ object AndroidModule {
     val androidTesting = listOf(
         Dependencies.slf4jNoOp,
         Dependencies.assertJ,
-        Dependencies.kotlinReflect,
         Dependencies.mockitoKotlin,
         Dependencies.espressoCore,
         Dependencies.espressoIntents,
@@ -171,7 +161,6 @@ object StandaloneModule {
 
     val main = listOf(
         Dependencies.kotlinStdlib,
-        Dependencies.kotlinReflect,
         Dependencies.kodein,
         Dependencies.kodeinConf
     )
@@ -181,7 +170,6 @@ object StandaloneModule {
         Dependencies.assertJ,
         Dependencies.slf4jNoOp,
         Dependencies.mockitoKotlin,
-        Dependencies.kotlinReflect,
         Dependencies.mockitoInline,
         Dependencies.coroutinesTest
     )

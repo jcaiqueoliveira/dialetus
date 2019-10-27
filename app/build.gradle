@@ -44,6 +44,7 @@ android {
             ext.alwaysUpdateBuildId = false
             ext.enableCrashlytics = false
             crunchPngs false
+            minifyEnabled false
 
             applicationIdSuffix ".dev"
             lintOptions { tasks.lint.enabled = false }
@@ -52,7 +53,9 @@ android {
         }
 
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
+            crunchPngs true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -95,8 +98,6 @@ dependencies {
 
     implementation Dependencies.okhttp
     implementation Dependencies.okhttpInterceptor
-
-    implementation Dependencies.androidxConstraintLayout
 
     AndroidModule.main.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }

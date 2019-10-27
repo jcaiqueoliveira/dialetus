@@ -7,7 +7,6 @@ dependencies {
     implementation project(':data')
     implementation project(':utils')
 
-    implementation Dependencies.androidxConstraintLayout
     implementation Dependencies.coroutines
     implementation Dependencies.coroutinesAndroid
 
