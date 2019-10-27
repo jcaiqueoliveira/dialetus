@@ -43,9 +43,9 @@ android {
         debug {
             ext.alwaysUpdateBuildId = false
             ext.enableCrashlytics = false
-            crunchPngs true
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            crunchPngs false
+            minifyEnabled false
+
             applicationIdSuffix ".dev"
             lintOptions { tasks.lint.enabled = false }
 
