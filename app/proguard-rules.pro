@@ -8,6 +8,7 @@
 # kotlinx.serialization
 -keepattributes *Annotation*, InnerClasses
 -dontnote kotlinx.serialization.SerializationKt
+
 -keep,includedescriptorclasses class com.jcaique.dialetus.domain.models.**$$serializer { *; }
 -keepclassmembers class com.jcaique.dialetus.domain.models.** {
     *** Companion;
@@ -15,6 +16,15 @@
 -keepclasseswithmembers class com.jcaique.dialetus.domain.models.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
+
+-keep,includedescriptorclasses class com.jcaique.dialetus.data.responses.**$$serializer { *; }
+-keepclassmembers class com.jcaique.dialetus.data.responses.** {
+    *** Companion;
+}
+-keepclasseswithmembers class com.jcaique.dialetus.data.responses.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
 
 # OkHttp
 -keepattributes *Annotation*, Signature, Exception
