@@ -14,8 +14,9 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 
-private val interceptors =
-    listOf(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
+private val interceptors = listOf(
+    HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+)
 
 val dataModule = Kodein.Module(name = "network") {
 

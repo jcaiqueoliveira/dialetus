@@ -5,9 +5,8 @@ import com.jcaique.dialetus.presentation.dialects.DialectsViewModel
 import com.jcaique.dialetus.presentation.regions.RegionsPresentation
 import com.jcaique.dialetus.presentation.regions.RegionsViewModel
 import com.jcaique.dialetus.utils.KodeinTags
-import com.jcaique.dialetus.utils.dataflow.ConfigChangesAwareStateContainer
-import com.jcaique.dialetus.utils.dataflow.StateMachine
-import com.jcaique.dialetus.utils.dataflow.TaskExecutor
+import com.jcaique.dialetus.utils.extensions.newStateContainer
+import com.jcaique.dialetus.utils.extensions.newStateMachine
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
@@ -16,17 +15,8 @@ import org.kodein.di.generic.provider
 val presentationModule = Kodein.Module(name = "presentation") {
 
     bind() from provider {
-        val stateContainer =
-            ConfigChangesAwareStateContainer<RegionsPresentation>(
-                host = instance(KodeinTags.hostActivity)
-            )
-        val stateMachine = StateMachine(
-            container = stateContainer,
-            executor = TaskExecutor.Concurrent(
-                scope = stateContainer.emissionScope,
-                dispatcher = instance()
-            )
-        )
+        val stateContainer = newStateContainer<RegionsPresentation>(KodeinTags.hostActivity)
+        val stateMachine = newStateMachine(stateContainer)
 
         RegionsViewModel(
             service = instance(),
@@ -35,17 +25,8 @@ val presentationModule = Kodein.Module(name = "presentation") {
     }
 
     bind() from provider {
-        val stateContainer =
-            ConfigChangesAwareStateContainer<DialectsPresentation>(
-                host = instance(KodeinTags.hostActivity)
-            )
-        val stateMachine = StateMachine(
-            container = stateContainer,
-            executor = TaskExecutor.Concurrent(
-                scope = stateContainer.emissionScope,
-                dispatcher = instance()
-            )
-        )
+        val stateContainer = newStateContainer<DialectsPresentation>(KodeinTags.hostActivity)
+        val stateMachine = newStateMachine(stateContainer)
 
         DialectsViewModel(
             machine = stateMachine,
