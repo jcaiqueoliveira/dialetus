@@ -9,6 +9,4 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - uses: msfjarvis/setup-android@1.0
-      with:
-        args: "./gradlew check assembleDebug"
+    - run: ./gradlew check assembleDebug
