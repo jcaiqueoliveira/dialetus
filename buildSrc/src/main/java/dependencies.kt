@@ -2,7 +2,7 @@ object Versions {
 
     const val kotlin = "1.3.50"
     const val androidGradleSupport = "3.5.1"
-    const val gmsSupport = "4.3.2"
+    const val gmsSupport = "4.3.4"
     const val ktlint = "9.0.0"
     const val detekt = "1.1.1"
 
@@ -21,7 +21,8 @@ object Versions {
 
     const val androidxLifecycle = "2.1.0"
 
-    const val firebaseCrashlytics = "2.10.1"
+    const val firebaseCrashlytics = "17.2.2"
+    const val firebaseCrashlyticsPlugin = "2.3.0"
 
     const val groupie = "2.3.0"
 
@@ -35,7 +36,6 @@ object Versions {
 
     const val kodeinDI = "6.0.1"
     const val slf4j = "1.7.25"
-    const val fabric = "1.26.1"
     const val coroutine = "1.3.2"
 }
 
@@ -49,6 +49,8 @@ object Dependencies {
     val okhttpInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp4}"
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit2}"
     val KtxConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.ktxConverter}"
+
+    val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-ktx:${Versions.firebaseCrashlytics}"
 
     val materialDesign = "com.google.android.material:material:${Versions.materialDesign}"
     val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.androidxAppCompat}"
@@ -97,9 +99,8 @@ object BuildPlugins {
     val kotlinxSerializiationPlugin = "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}"
     val ktlint = "org.jlleitschuh.gradle:ktlint-gradle:${Versions.ktlint}"
     val detekt = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detekt}"
-
     val gmsPlugin = "com.google.gms:google-services:${Versions.gmsSupport}"
-    val firebaseCrashlytics = "io.fabric.tools:gradle:${Versions.fabric}"
+    val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics-gradle:${Versions.firebaseCrashlyticsPlugin}"
 }
 
 object NetworkingDependencies {

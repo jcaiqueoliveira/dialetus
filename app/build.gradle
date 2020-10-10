@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -98,6 +99,7 @@ dependencies {
 
     implementation Dependencies.okhttp
     implementation Dependencies.okhttpInterceptor
+    implementation Dependencies.firebaseCrashlytics
 
     AndroidModule.main.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }

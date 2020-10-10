@@ -6,7 +6,6 @@ buildscript {
         mavenLocal()
         maven { url 'https://kotlin.bintray.com/kotlinx' }
         maven { url 'https://jitpack.io' }
-        maven { url 'https://maven.fabric.io/public' }
         maven { url 'https://dl.bintray.com/android/android-tools' }
         maven { url 'https://plugins.gradle.org/m2/' }
     }
@@ -17,6 +16,7 @@ buildscript {
         classpath BuildPlugins.kotlinxSerializiationPlugin
         classpath BuildPlugins.ktlint
         classpath BuildPlugins.detekt
+        classpath BuildPlugins.firebaseCrashlytics
     }
 
 }
