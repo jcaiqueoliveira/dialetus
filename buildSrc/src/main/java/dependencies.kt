@@ -1,15 +1,15 @@
 object Versions {
 
-    const val kotlin = "1.3.50"
+    const val kotlin = "1.4.10"
     const val androidGradleSupport = "3.5.1"
     const val gmsSupport = "4.3.2"
     const val ktlint = "9.0.0"
     const val detekt = "1.1.1"
 
     const val okhttp4 = "4.2.1"
-    const val retrofit2 = "2.6.2"
-    const val ktxConverter = "0.4.0"
-    const val ktxSerialization = "0.13.0"
+    const val retrofit2 = "2.9.0"
+    const val ktxConverter = "0.8.0"
+    const val ktxSerialization = "1.0.0"
 
     const val materialDesign = "1.1.0-alpha10"
     const val androidxAppCompat = "1.1.0"
@@ -44,7 +44,7 @@ object Dependencies {
 
     val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
     val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
-    val kotlinxSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.ktxSerialization}"
+    val kotlinxSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.ktxSerialization}"
 
     val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp4}"
     val okhttpInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp4}"
