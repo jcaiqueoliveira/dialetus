@@ -37,6 +37,7 @@ object Versions {
     const val slf4j = "1.7.25"
     const val fabric = "1.26.1"
     const val coroutine = "1.3.2"
+    const val dalek = "1.0.2"
 }
 
 object Dependencies {
@@ -88,6 +89,8 @@ object Dependencies {
     val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
     val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
     val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutine}"
+    
+    val dalek = "com.github.adrielcafe:dalek:${Versions.dalek}"
 }
 
 object BuildPlugins {

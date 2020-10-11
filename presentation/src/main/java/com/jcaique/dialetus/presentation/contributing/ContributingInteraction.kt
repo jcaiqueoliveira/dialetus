@@ -1,6 +1,6 @@
 package com.jcaique.dialetus.presentation.contributing
 
-internal interface ContributingInteraction {
-    object OpenAndroid : ContributingInteraction
-    object OpenWeb : ContributingInteraction
+internal sealed class ContributingInteraction(val url: String) {
+    object OpenAndroid : ContributingInteraction(ContributingConst.ANDROID)
+    object OpenWeb : ContributingInteraction(ContributingConst.WEB)
 }

@@ -9,6 +9,7 @@ dependencies {
 
     implementation Dependencies.coroutines
     implementation Dependencies.coroutinesAndroid
+    implementation Dependencies.dalek
 
     AndroidModule.main.forEach { implementation it }
     AndroidModule.unitTesting.forEach { testImplementation it }
