@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 
 internal class DialectsViewModel(
     private val service: DialectsService
-) : ViewModel()  {
+) : ViewModel() {
 
     // TODO cache dialects elsewhere
     private var dialects = emptyList<Dialect>()
