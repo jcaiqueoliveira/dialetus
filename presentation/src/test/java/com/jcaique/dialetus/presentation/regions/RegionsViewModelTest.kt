@@ -13,6 +13,7 @@ import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.stub
 import kotlinx.coroutines.flow.toList
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.Before
@@ -45,9 +46,11 @@ class RegionsViewModelTest {
             Finish
         )
 
-        val result = viewModel
-            .showRegions()
-            .toList()
+        val result = runBlocking {
+            viewModel
+                .showRegions()
+                .toList()
+        }
 
         assertThat(result).isEqualTo(expected)
     }
@@ -72,9 +75,11 @@ class RegionsViewModelTest {
             Finish
         )
 
-        val result = viewModel
-            .showRegions()
-            .toList()
+        val result = runBlocking {
+            viewModel
+                .showRegions()
+                .toList()
+        }
 
         assertThat(result).isEqualTo(expected)
     }

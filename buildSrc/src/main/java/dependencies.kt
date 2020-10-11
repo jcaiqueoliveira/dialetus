@@ -36,7 +36,7 @@ object Versions {
     const val kodeinDI = "6.0.1"
     const val slf4j = "1.7.25"
     const val fabric = "1.26.1"
-    const val coroutine = "1.3.2"
+    const val coroutine = "1.3.9"
     const val dalek = "1.0.2"
 }
 
