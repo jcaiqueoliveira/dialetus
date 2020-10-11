@@ -6,7 +6,10 @@ repositories {
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs = ["-Xinline-classes"]
+    }
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
