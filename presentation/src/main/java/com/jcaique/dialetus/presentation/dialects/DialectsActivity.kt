@@ -87,7 +87,7 @@ class DialectsActivity : AppCompatActivity(), DIAware {
 
     private fun filterDialects() {
         viewModel
-            .filterDialects(query = dialectsFilter.value)
+            .filterDialects(query = dialectsFilter.text.toString())
             .collectIn(lifecycleScope, ::handleResult)
     }
 
