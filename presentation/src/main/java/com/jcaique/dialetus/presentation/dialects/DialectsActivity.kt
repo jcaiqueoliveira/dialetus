@@ -27,8 +27,6 @@ import kotlinx.android.synthetic.main.activity_regions.emptyStateView
 import kotlinx.android.synthetic.main.activity_regions.errorStateView
 import kotlinx.android.synthetic.main.activity_regions.loadingStateView
 import kotlinx.android.synthetic.main.error_state_layout.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.kodein.di.DIAware
 import org.kodein.di.instance
 

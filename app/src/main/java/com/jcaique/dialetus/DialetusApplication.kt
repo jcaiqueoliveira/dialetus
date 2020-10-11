@@ -4,8 +4,12 @@ import android.app.Application
 import com.jcaique.dialetus.data.di.dataModule
 import com.jcaique.dialetus.presentation.di.presentationModule
 import kotlinx.coroutines.Dispatchers
-import org.kodein.di.*
+import org.kodein.di.DI
+import org.kodein.di.DIAware
+import org.kodein.di.bind
 import org.kodein.di.conf.ConfigurableDI
+import org.kodein.di.provider
+import org.kodein.di.singleton
 
 class DialetusApplication : Application(), DIAware {
 

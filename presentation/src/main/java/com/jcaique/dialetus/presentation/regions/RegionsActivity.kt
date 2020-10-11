@@ -19,8 +19,6 @@ import com.jcaique.dialetus.utils.extensions.selfInject
 import com.jcaique.dialetus.utils.ui.DividerItemDecoration
 import kotlinx.android.synthetic.main.activity_regions.*
 import kotlinx.android.synthetic.main.error_state_layout.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.kodein.di.DIAware
 import org.kodein.di.instance
 
