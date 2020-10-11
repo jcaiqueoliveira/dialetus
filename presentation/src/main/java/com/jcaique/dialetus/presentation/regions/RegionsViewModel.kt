@@ -1,35 +1,20 @@
 package com.jcaique.dialetus.presentation.regions
 
+import androidx.lifecycle.ViewModel
+import cafe.adriel.dalek.Dalek
+import cafe.adriel.dalek.DalekEvent
 import com.jcaique.dialetus.domain.regions.RegionsService
-import com.jcaique.dialetus.utils.dataflow.StateMachine
-import com.jcaique.dialetus.utils.dataflow.StateTransition
-import com.jcaique.dialetus.utils.dataflow.UnsupportedUserInteraction
-import com.jcaique.dialetus.utils.dataflow.UserInteraction
+import kotlinx.coroutines.flow.Flow
 
 internal class RegionsViewModel(
-  private val service: RegionsService,
-  private val machine: StateMachine<RegionsPresentation>
-) {
+  private val service: RegionsService
+) : ViewModel() {
 
-    fun bind() = machine.states()
-
-    fun handle(interaction: UserInteraction) {
-        interpret(interaction)
-            .let(machine::consume)
-    }
-
-    private fun interpret(interaction: UserInteraction) =
-        when (interaction) {
-            UserInteraction.OpenedScreen,
-            UserInteraction.RequestedFreshContent -> StateTransition(
-                ::showRegions
-            )
-            else -> throw UnsupportedUserInteraction
+    fun showRegions(): Flow<DalekEvent<RegionsPresentation>> =
+        Dalek {
+            service
+                .fetchRegions()
+                .map { it.copy(it.name.capitalize()) }
+                .let(::RegionsPresentation)
         }
-
-    private suspend fun showRegions() =
-        service
-            .fetchRegions()
-            .map { it.copy(it.name.capitalize()) }
-            .let(::RegionsPresentation)
 }

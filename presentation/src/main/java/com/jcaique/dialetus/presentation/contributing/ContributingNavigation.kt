@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.jcaique.dialetus.presentation.R
-import com.jcaique.dialetus.utils.dataflow.UnsupportedUserInteraction
 import kotlinx.android.synthetic.main.regions_menu_view.*
 
 internal class ContributingNavigation : BottomSheetDialogFragment() {
@@ -33,17 +32,8 @@ internal class ContributingNavigation : BottomSheetDialogFragment() {
         }
     }
 
-    private fun handleClick(interaction: ContributingInteraction) {
-        when (interaction) {
-            ContributingInteraction.OpenAndroid -> navigate(
-                ContributingConst.ANDROID
-            )
-            ContributingInteraction.OpenWeb -> navigate(
-                ContributingConst.API
-            )
-            else -> throw UnsupportedUserInteraction
-        }
-    }
+    private fun handleClick(interaction: ContributingInteraction) =
+        navigate(interaction.url)
 
     private fun navigate(url: String) {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))

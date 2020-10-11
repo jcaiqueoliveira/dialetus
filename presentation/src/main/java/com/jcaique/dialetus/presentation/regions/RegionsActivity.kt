@@ -5,22 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import cafe.adriel.dalek.DalekEvent
+import cafe.adriel.dalek.Failure
+import cafe.adriel.dalek.Finish
+import cafe.adriel.dalek.Start
+import cafe.adriel.dalek.Success
+import cafe.adriel.dalek.collectIn
 import com.jcaique.dialetus.domain.models.Region
 import com.jcaique.dialetus.presentation.R
 import com.jcaique.dialetus.presentation.contributing.ContributingNavigation
 import com.jcaique.dialetus.presentation.dialects.DialectsActivity
-import com.jcaique.dialetus.utils.dataflow.UserInteraction.OpenedScreen
-import com.jcaique.dialetus.utils.dataflow.UserInteraction.RequestedFreshContent
-import com.jcaique.dialetus.utils.dataflow.ViewState
-import com.jcaique.dialetus.utils.dataflow.ViewState.Failed
-import com.jcaique.dialetus.utils.dataflow.ViewState.Loading
-import com.jcaique.dialetus.utils.dataflow.ViewState.Success
 import com.jcaique.dialetus.utils.extensions.selfInject
 import com.jcaique.dialetus.utils.ui.DividerItemDecoration
 import kotlinx.android.synthetic.main.activity_regions.*
 import kotlinx.android.synthetic.main.error_state_layout.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 
@@ -32,15 +30,16 @@ class RegionsActivity : AppCompatActivity(), KodeinAware {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_regions)
-        init()
-        setupBottomBar()
+        setupViews()
+        showRegions()
     }
 
-    private fun init() {
-        viewModel.handle(OpenedScreen)
+    private fun setupViews() {
+        setSupportActionBar(bar)
+        val bottom = ContributingNavigation()
 
-        lifecycleScope.launch {
-            viewModel.bind().collect { handle(it) }
+        bar.setNavigationOnClickListener {
+            bottom.show(supportFragmentManager, bottom.tag)
         }
 
         regionsRv.run {
@@ -49,42 +48,38 @@ class RegionsActivity : AppCompatActivity(), KodeinAware {
         }
     }
 
-    private fun setupBottomBar() {
-        setSupportActionBar(bar)
-        val bottom = ContributingNavigation()
-
-        bar.setNavigationOnClickListener {
-            bottom.show(supportFragmentManager, bottom.tag)
-        }
+    private fun showRegions() {
+        viewModel
+            .showRegions()
+            .collectIn(lifecycleScope, ::handleResult)
     }
 
-    private fun handle(state: ViewState<RegionsPresentation>) {
-        controlVisibilities(state)
+    private suspend fun handleResult(event: DalekEvent<RegionsPresentation>) {
+        controlVisibilities(event)
 
-        when (state) {
-            is Success -> setupContent(state.value)
-            is Failed -> setupRetry()
-        }
-    }
-
-    private fun setupRetry() {
-        errorStateView.let {
-            tryAgainBtn.setOnClickListener {
-                viewModel.handle(RequestedFreshContent)
-            }
+        when (event) {
+            is Success -> setupContent(event.value)
+            is Failure -> setupRetry()
         }
     }
 
     private fun setupContent(value: RegionsPresentation) {
-        regionsRv.adapter =
-            RegionAdapter(value, ::navigateToDialects)
+        regionsRv.adapter = RegionAdapter(value, ::navigateToDialects)
     }
 
-    private fun controlVisibilities(state: ViewState<RegionsPresentation>) {
-        loadingStateView.isVisible = state is Loading
-        emptyStateView.isVisible = state is Success && state.value.regions.isEmpty()
-        errorStateView.isVisible = state is Failed
-        regionsRv.isVisible = state is Success && state.value.regions.isNotEmpty()
+    private fun setupRetry() {
+        tryAgainBtn.setOnClickListener {
+            showRegions()
+        }
+    }
+
+    private fun controlVisibilities(event: DalekEvent<RegionsPresentation>) {
+        if (event is Finish) return
+
+        loadingStateView.isVisible = event is Start
+        emptyStateView.isVisible = event is Success && event.value.regions.isEmpty()
+        errorStateView.isVisible = event is Failure
+        regionsRv.isVisible = event is Success && event.value.regions.isNotEmpty()
     }
 
     private fun navigateToDialects(region: Region) =

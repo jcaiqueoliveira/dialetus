@@ -30,13 +30,14 @@ object Versions {
     const val assertJ29 = "2.9.1"
     const val espresso = "3.1.0"
     const val androidJUnit = "1.1.0"
-    const val mockitoKT = "2.0.0-RC1"
-    const val mockito = "2.19.0"
+    const val mockitoKT = "2.2.0"
+    const val mockito = "3.5.13"
 
     const val kodeinDI = "6.0.1"
     const val slf4j = "1.7.25"
     const val fabric = "1.26.1"
     const val coroutine = "1.3.2"
+    const val dalek = "1.0.2"
 }
 
 object Dependencies {
@@ -88,6 +89,8 @@ object Dependencies {
     val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}"
     val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
     val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutine}"
+    
+    val dalek = "com.github.adrielcafe:dalek:${Versions.dalek}"
 }
 
 object BuildPlugins {

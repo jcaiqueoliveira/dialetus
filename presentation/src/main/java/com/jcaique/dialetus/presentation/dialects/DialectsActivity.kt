@@ -9,11 +9,17 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import cafe.adriel.dalek.DalekEvent
+import cafe.adriel.dalek.Failure
+import cafe.adriel.dalek.Finish
+import cafe.adriel.dalek.Start
+import cafe.adriel.dalek.Success
+import cafe.adriel.dalek.collectIn
 import com.jcaique.dialetus.domain.models.Dialect
 import com.jcaique.dialetus.domain.models.Region
 import com.jcaique.dialetus.presentation.R
 import com.jcaique.dialetus.presentation.contributing.ContributingConst
-import com.jcaique.dialetus.utils.dataflow.ViewState
+import com.jcaique.dialetus.presentation.ktx.value
 import com.jcaique.dialetus.utils.extensions.selfInject
 import com.jcaique.dialetus.utils.extensions.share
 import com.jcaique.dialetus.utils.ui.DividerItemDecoration
@@ -22,16 +28,14 @@ import kotlinx.android.synthetic.main.activity_regions.emptyStateView
 import kotlinx.android.synthetic.main.activity_regions.errorStateView
 import kotlinx.android.synthetic.main.activity_regions.loadingStateView
 import kotlinx.android.synthetic.main.error_state_layout.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 
 class DialectsActivity : AppCompatActivity(), KodeinAware {
-    
+
     companion object {
         const val EXTRA_REGION = "region"
-        
+
         fun newInstance(activity: Activity, region: Region) = activity.run {
             startActivity(
                 Intent(this, DialectsActivity::class.java)
@@ -41,73 +45,68 @@ class DialectsActivity : AppCompatActivity(), KodeinAware {
     }
 
     override val kodein = selfInject()
+
     private val viewModel by kodein.instance<DialectsViewModel>()
-    
+
     private val region by lazy { intent.getSerializableExtra(EXTRA_REGION) as Region }
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dialects)
-        init()
-        setupToolbar()
+        setupViews()
+        showDialects()
     }
 
-    private fun init() {
-        viewModel.handle(ShowDialects(region))
-        
-        lifecycleScope.launch {
-            viewModel.bind().collect { handle(it) }
-        }
-        
-        dialectsList.run {
-            layoutManager = LinearLayoutManager(this@DialectsActivity)
-            addItemDecoration(
-                DividerItemDecoration(this@DialectsActivity)
-                    .also { 
-                        ContextCompat
-                            .getDrawable(this@DialectsActivity, R.drawable.divider)
-                            ?.let(it::setDrawable) 
-                    }
-            )
-        }
-        
-        dialectsFilter.addTextChangedListener { filterDialects() }
-    }
-    
-    private fun setupToolbar() {
+    private fun setupViews() {
         dialectsToolBar.apply {
             title = region.name.capitalize()
             setNavigationOnClickListener { finish() }
         }
+
+        dialectsList.run {
+            layoutManager = LinearLayoutManager(this@DialectsActivity)
+            addItemDecoration(
+                DividerItemDecoration(this@DialectsActivity)
+                    .also {
+                        ContextCompat
+                            .getDrawable(this@DialectsActivity, R.drawable.divider)
+                            ?.let(it::setDrawable)
+                    }
+            )
+        }
+
+        dialectsFilter.addTextChangedListener { filterDialects() }
     }
 
-    private fun handle(state: ViewState<DialectsPresentation>) {
-        controlVisibilities(state)
+    private fun showDialects() {
+        viewModel
+            .getDialects(region)
+            .collectIn(lifecycleScope, ::handleResult)
+    }
 
-        when (state) {
-            is ViewState.Success -> setupContent(state.value)
-            is ViewState.Failed -> setupRetry()
+    private fun filterDialects() {
+        viewModel
+            .filterDialects(query = dialectsFilter.value)
+            .collectIn(lifecycleScope, ::handleResult)
+    }
+
+    private suspend fun handleResult(event: DalekEvent<DialectsPresentation>) {
+        controlVisibilities(event)
+
+        when (event) {
+            is Success -> setupContent(event.value)
+            is Failure -> setupRetry()
         }
+    }
+
+    private fun setupContent(presentation: DialectsPresentation) {
+        dialectsList.adapter = DialectAdapter(presentation, ::shareDialect)
     }
 
     private fun setupRetry() {
-        errorStateView.let {
-            tryAgainBtn.setOnClickListener {
-                viewModel.handle(ShowDialects(region))
-            }
+        tryAgainBtn.setOnClickListener {
+            showDialects()
         }
-    }
-
-    private fun setupContent(value: DialectsPresentation) {
-        dialectsList.adapter =
-            DialectAdapter(value, ::shareDialect)
-    }
-    
-    private fun filterDialects() {
-        dialectsFilter.text
-            ?.toString()
-            ?.let(::FilterDialects)
-            ?.let(viewModel::handle)
     }
 
     private fun shareDialect(dialect: Dialect) = dialect.run {
@@ -126,11 +125,13 @@ class DialectsActivity : AppCompatActivity(), KodeinAware {
             .trimMargin()
             .share(this@DialectsActivity)
     }
-    
-    private fun controlVisibilities(state: ViewState<DialectsPresentation>) {
-        loadingStateView.isVisible = state is ViewState.Loading
-        emptyStateView.isVisible = state is ViewState.Success && state.value.dialects.isEmpty()
-        errorStateView.isVisible = state is ViewState.Failed
-        dialectsList.isVisible = state is ViewState.Success && state.value.dialects.isNotEmpty()
+
+    private fun controlVisibilities(event: DalekEvent<DialectsPresentation>) {
+        if (event is Finish) return
+        
+        loadingStateView.isVisible = event is Start
+        emptyStateView.isVisible = event is Success && event.value.dialects.isEmpty()
+        errorStateView.isVisible = event is Failure
+        dialectsList.isVisible = event is Success && event.value.dialects.isNotEmpty()
     }
 }
