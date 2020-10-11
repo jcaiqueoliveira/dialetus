@@ -19,7 +19,6 @@ import com.jcaique.dialetus.domain.models.Dialect
 import com.jcaique.dialetus.domain.models.Region
 import com.jcaique.dialetus.presentation.R
 import com.jcaique.dialetus.presentation.contributing.ContributingConst
-import com.jcaique.dialetus.presentation.ktx.value
 import com.jcaique.dialetus.utils.extensions.selfInject
 import com.jcaique.dialetus.utils.extensions.share
 import com.jcaique.dialetus.utils.ui.DividerItemDecoration
@@ -28,11 +27,11 @@ import kotlinx.android.synthetic.main.activity_regions.emptyStateView
 import kotlinx.android.synthetic.main.activity_regions.errorStateView
 import kotlinx.android.synthetic.main.activity_regions.loadingStateView
 import kotlinx.android.synthetic.main.error_state_layout.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.generic.instance
+import org.kodein.di.DIAware
+import org.kodein.di.instance
 
-class DialectsActivity : AppCompatActivity(), KodeinAware {
-
+class DialectsActivity : AppCompatActivity(), DIAware {
+    
     companion object {
         const val EXTRA_REGION = "region"
 
@@ -44,10 +43,10 @@ class DialectsActivity : AppCompatActivity(), KodeinAware {
         }
     }
 
-    override val kodein = selfInject()
+    override val di = selfInject()
 
-    private val viewModel by kodein.instance<DialectsViewModel>()
-
+    private val viewModel by di.instance<DialectsViewModel>()
+    
     private val region by lazy { intent.getSerializableExtra(EXTRA_REGION) as Region }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,7 +85,7 @@ class DialectsActivity : AppCompatActivity(), KodeinAware {
 
     private fun filterDialects() {
         viewModel
-            .filterDialects(query = dialectsFilter.value)
+            .filterDialects(query = dialectsFilter.text.toString())
             .collectIn(lifecycleScope, ::handleResult)
     }
 
@@ -128,7 +127,7 @@ class DialectsActivity : AppCompatActivity(), KodeinAware {
 
     private fun controlVisibilities(event: DalekEvent<DialectsPresentation>) {
         if (event is Finish) return
-        
+
         loadingStateView.isVisible = event is Start
         emptyStateView.isVisible = event is Success && event.value.dialects.isEmpty()
         errorStateView.isVisible = event is Failure

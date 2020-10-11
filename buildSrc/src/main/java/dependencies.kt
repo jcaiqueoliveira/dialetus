@@ -33,7 +33,7 @@ object Versions {
     const val mockitoKT = "2.2.0"
     const val mockito = "3.5.13"
 
-    const val kodeinDI = "6.0.1"
+    const val kodeinDI = "7.1.0"
     const val slf4j = "1.7.25"
     const val fabric = "1.26.1"
     const val coroutine = "1.3.9"
@@ -77,7 +77,7 @@ object Dependencies {
     val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKT}"
     val mockitoInline = "org.mockito:mockito-inline:${Versions.mockito}"
     val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp4}"
-    val kodein = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodeinDI}"
+    val kodein = "org.kodein.di:kodein-di:${Versions.kodeinDI}"
     val kodeinConf = "org.kodein.di:kodein-di-conf-jvm:${Versions.kodeinDI}"
     val kodeinAndroid = "org.kodein.di:kodein-di-framework-android-x:${Versions.kodeinDI}"
     val slf4jNoOp = "org.slf4j:slf4j-nop:${Versions.slf4j}"

@@ -4,16 +4,16 @@ import android.app.Application
 import com.jcaique.dialetus.data.di.dataModule
 import com.jcaique.dialetus.presentation.di.presentationModule
 import kotlinx.coroutines.Dispatchers
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.conf.ConfigurableKodein
-import org.kodein.di.generic.bind
-import org.kodein.di.generic.provider
-import org.kodein.di.generic.singleton
+import org.kodein.di.DI
+import org.kodein.di.DIAware
+import org.kodein.di.bind
+import org.kodein.di.conf.ConfigurableDI
+import org.kodein.di.provider
+import org.kodein.di.singleton
 
-class DialetusApplication : Application(), KodeinAware {
+class DialetusApplication : Application(), DIAware {
 
-    private val appModule = Kodein.Module(name = "application") {
+    private val appModule = DI.Module(name = "application") {
 
         bind() from provider {
             this@DialetusApplication as Application
@@ -23,8 +23,7 @@ class DialetusApplication : Application(), KodeinAware {
             Dispatchers.IO
         }
     }
-
-    override val kodein = ConfigurableKodein(mutable = true).apply {
+    override val di: DI = ConfigurableDI(mutable = true).apply {
         addImport(appModule)
         addImport(dataModule)
         addImport(presentationModule)
