@@ -30,8 +30,8 @@ object Versions {
     const val assertJ29 = "2.9.1"
     const val espresso = "3.1.0"
     const val androidJUnit = "1.1.0"
-    const val mockitoKT = "2.0.0-RC1"
-    const val mockito = "2.19.0"
+    const val mockitoKT = "2.2.0"
+    const val mockito = "3.5.13"
 
     const val kodeinDI = "6.0.1"
     const val slf4j = "1.7.25"
