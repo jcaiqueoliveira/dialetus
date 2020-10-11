@@ -1,7 +1,7 @@
 object Versions {
 
     const val kotlin = "1.4.10"
-    const val androidGradleSupport = "3.5.1"
+    const val androidGradleSupport = "4.2.0-alpha13"
     const val gmsSupport = "4.3.2"
     const val ktlint = "9.0.0"
     const val detekt = "1.1.1"

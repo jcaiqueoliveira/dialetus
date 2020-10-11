@@ -35,7 +35,7 @@ class RegionsViewModelTest {
 
     @Test
     fun `should report failure when fetching regions from remote`() = runBlockingTest {
-        service.stub { 
+        service.stub {
             onBlocking { fetchRegions() } doThrow UnexpectedResponse
         }
 
@@ -44,7 +44,7 @@ class RegionsViewModelTest {
             Failure(UnexpectedResponse),
             Finish
         )
-        
+
         val result = viewModel
             .showRegions()
             .toList()
@@ -65,7 +65,7 @@ class RegionsViewModelTest {
         service.stub {
             onBlocking { fetchRegions() } doReturn regions
         }
-        
+
         val expected = listOf(
             Start,
             Success(presentation),
