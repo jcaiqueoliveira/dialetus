@@ -1,7 +1,5 @@
 apply plugin: 'com.android.library'
 apply from: "../android-module.gradle"
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 dependencies {
     AndroidModule.main.forEach { implementation it }

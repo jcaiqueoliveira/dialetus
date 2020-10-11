@@ -5,6 +5,7 @@ buildscript {
         jcenter()
         mavenLocal()
         maven { url 'https://kotlin.bintray.com/kotlinx' }
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap/" }
         maven { url 'https://jitpack.io' }
         maven { url 'https://maven.fabric.io/public' }
         maven { url 'https://dl.bintray.com/android/android-tools' }
@@ -30,17 +31,12 @@ allprojects {
         jcenter()
         mavenLocal()
         maven { url "https://kotlin.bintray.com/kotlinx" }
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap/" }
         maven { url 'https://jitpack.io' }
     }
     
     detekt {
         config = files("${rootDir}/detekt.yml")
-    }
-
-    configurations.all {
-        resolutionStrategy {
-            force 'androidx.constraintlayout:constraintlayout:1.1.3'
-        }
     }
 }
 

@@ -20,6 +20,8 @@ object Versions {
     const val androidxConstraintLayout = "2.0.0-beta2"
 
     const val androidxLifecycle = "2.1.0"
+    
+    const val compose = "1.0.0-alpha04"
 
     const val firebaseCrashlytics = "2.10.1"
 
@@ -63,6 +65,10 @@ object Dependencies {
     val androidxLifecycleCommonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.androidxLifecycle}"
     val androidxLifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.androidxLifecycle}"
 
+    val composeUi = "androidx.compose.ui:ui:${Versions.compose}"
+    val composeMaterial = "androidx.compose.material:material:${Versions.compose}"
+    val composeTooling = "androidx.ui:ui-tooling:${Versions.compose}"
+    
     val androidTestCore = "androidx.test:core:${Versions.androidJUnit}"
     val androidTestCoreKtx = "androidx.test:core-ktx:${Versions.androidJUnit}"
     val androidTestExtJunit = "androidx.test.ext:junit:${Versions.androidJUnit}"
@@ -133,7 +139,10 @@ object AndroidModule {
         Dependencies.kodein,
         Dependencies.kodeinConf,
         Dependencies.kodeinAndroid,
-        Dependencies.androidxLifecycleViewModel
+        Dependencies.androidxLifecycleViewModel,
+        Dependencies.composeUi,
+        Dependencies.composeMaterial,
+        Dependencies.composeTooling
     )
 
     val unitTesting = listOf(
