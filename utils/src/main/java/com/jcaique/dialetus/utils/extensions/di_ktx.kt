@@ -3,14 +3,11 @@ package com.jcaique.dialetus.utils.extensions
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.jcaique.dialetus.utils.KodeinTags.hostActivity
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.generic.bind
-import org.kodein.di.generic.provider
+import org.kodein.di.*
 
-fun AppCompatActivity.selfInject(bindings: Kodein.MainBuilder.() -> Unit = {}) = Kodein.lazy {
+fun AppCompatActivity.selfInject(bindings: DI.MainBuilder.() -> Unit = {}) = DI.lazy {
 
-    val parentKodein = (applicationContext as KodeinAware).kodein
+    val parentKodein = (applicationContext as DIAware).di
 
     extend(parentKodein)
 

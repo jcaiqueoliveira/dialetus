@@ -9,16 +9,16 @@ import com.jcaique.dialetus.data.service.regions.RegionsInfrastructure
 import com.jcaique.dialetus.domain.dialects.DialectsService
 import com.jcaique.dialetus.domain.regions.RegionsService
 import okhttp3.logging.HttpLoggingInterceptor
-import org.kodein.di.Kodein
-import org.kodein.di.generic.bind
-import org.kodein.di.generic.instance
-import org.kodein.di.generic.singleton
+import org.kodein.di.DI
+import org.kodein.di.bind
+import org.kodein.di.instance
+import org.kodein.di.singleton
 
 private val interceptors = listOf(
     HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
 )
 
-val dataModule = Kodein.Module(name = "network") {
+val dataModule = DI.Module(name = "network") {
 
     bind<DialetusGateway>() with singleton {
         val client = OkHttpClientProvider.provide(interceptors)

@@ -19,13 +19,15 @@ import com.jcaique.dialetus.utils.extensions.selfInject
 import com.jcaique.dialetus.utils.ui.DividerItemDecoration
 import kotlinx.android.synthetic.main.activity_regions.*
 import kotlinx.android.synthetic.main.error_state_layout.*
-import org.kodein.di.KodeinAware
-import org.kodein.di.generic.instance
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import org.kodein.di.DIAware
+import org.kodein.di.instance
 
-class RegionsActivity : AppCompatActivity(), KodeinAware {
+class RegionsActivity : AppCompatActivity(), DIAware {
 
-    override val kodein = selfInject()
-    private val viewModel by kodein.instance<RegionsViewModel>()
+    override val di by selfInject()
+    private val viewModel by di.instance<RegionsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
