@@ -20,13 +20,12 @@ buildscript {
         classpath(BuildPlugins.ktlint)
         classpath(BuildPlugins.detekt)
     }
-
 }
 
 allprojects {
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
     apply(plugin = "io.gitlab.arturbosch.detekt")
-    
+
     repositories {
         google()
         jcenter()
@@ -36,7 +35,7 @@ allprojects {
     }
 
     configure<DetektExtension> {
-        config = files("${rootDir}/detekt.yml")
+        config = files("$rootDir/detekt.yml")
     }
 
     configurations.all {

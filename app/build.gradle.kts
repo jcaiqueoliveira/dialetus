@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.application")
@@ -19,7 +20,7 @@ android {
         versionName = currentVersion.name
         testInstrumentationRunner = AndroidConfig.instrumentationTestRunner
 
-        //archivesBaseName = "app-${currentVersion.name}"
+        // archivesBaseName = "app-${currentVersion.name}"
 
         resConfigs("pt-rBR")
 
@@ -34,17 +35,13 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    kotlinOptions {
-        jvmTarget = "${JavaVersion.VERSION_1_8}"
-    }
-
     buildTypes {
         getByName("debug") {
             isCrunchPngs = false
             isMinifyEnabled = false
 
             applicationIdSuffix = ".dev"
-            //lintOptions { tasks.lint.enabled = false }
+            // lintOptions { tasks.lint.enabled = false }
 
             defaultConfig {
                 resConfigs("xxxhdpi")
@@ -89,10 +86,6 @@ android {
     }
 }
 
-extensions.getByType<AndroidExtensionsExtension>().apply {
-    isExperimental = true
-}
-
 dependencies {
     implementation(project(":domain"))
     implementation(project(":presentation"))
@@ -104,4 +97,15 @@ dependencies {
     AndroidModule.main.forEach(::implementation)
     AndroidModule.unitTesting.forEach(::testImplementation)
     AndroidModule.androidTesting.forEach(::androidTestImplementation)
+}
+
+extensions.getByType<AndroidExtensionsExtension>().apply {
+    isExperimental = true
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "${JavaVersion.VERSION_1_8}"
+        freeCompilerArgs = listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
+    }
 }
