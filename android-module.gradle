@@ -69,15 +69,30 @@ android {
     }
 
     testOptions {
-
         unitTests {
             includeAndroidResources = true
             unitTests.returnDefaultValues = true
         }
     }
+    
     kotlinOptions {
+        useIR = true
         jvmTarget = '1.8'
-        freeCompilerArgs = ["-Xinline-classes"]
+        freeCompilerArgs = ["-Xinline-classes", "-Xopt-in=kotlin.RequiresOptIn"]
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    
+    buildFeatures {
+        compose true
+    }
+    
+    composeOptions {
+        kotlinCompilerExtensionVersion Versions.compose
+        kotlinCompilerVersion '1.4.0'
     }
 }
 
