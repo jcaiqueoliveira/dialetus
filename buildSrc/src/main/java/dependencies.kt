@@ -132,14 +132,12 @@ object AndroidModule {
     val main = listOf(
         Dependencies.kotlinStdlib,
         Dependencies.androidxActivity,
-        Dependencies.androidxCardView,
-        Dependencies.androidxRecyclerView,
         Dependencies.androidxLifecycleExtensions,
+        Dependencies.androidxLifecycleViewModel,
         Dependencies.materialDesign,
         Dependencies.kodein,
         Dependencies.kodeinConf,
         Dependencies.kodeinAndroid,
-        Dependencies.androidxLifecycleViewModel,
         Dependencies.composeUi,
         Dependencies.composeMaterial,
         Dependencies.composeTooling
