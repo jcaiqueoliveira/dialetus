@@ -19,19 +19,31 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Share
-import androidx.compose.material.icons.outlined.Share
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import com.jcaique.dialetus.domain.models.Dialect
+import com.jcaique.dialetus.domain.models.Region
 import com.jcaique.dialetus.presentation.ui.DialetusTheme
 
-private val items by lazy {
+private val regionsItems by lazy {
+    (0..100).map { index ->
+        Region(
+            name = "name $index",
+            total = index
+        )
+    }
+}
+
+private val dialectsItems by lazy {
     (0..10).map { index ->
         Dialect(
             slug = "slug-$index",
@@ -46,35 +58,66 @@ class DialetusActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            App()
+            DialetusTheme {
+                val regionState = remember {
+                    mutableStateOf<Region?>(null)
+                }
+
+                if (regionState.value != null) {
+                    DialectsScreen(regionState.value!!) {
+                        regionState.value = null
+                    }
+                } else {
+                    RegionScreen {
+                        regionState.value = it
+                    }
+                }
+            }
         }
     }
 }
 
 @Composable
-fun App() {
-    DialetusTheme {
-        Scaffold(
-            topBar = {
-                AppTop()
-            },
-            bodyContent = {
-                AppContent()
-            },
-            bottomBar = {
-                AppBottom()
-            }
+fun RegionScreen(onClick: (Region) -> Unit) {
+    LazyColumnFor(
+        items = regionsItems,
+        modifier = Modifier.background(Color.LightGray.copy(alpha = .1f))
+    ) { item ->
+        DialectRegion(
+            region = item,
+            onClick = onClick
         )
+        if (item != regionsItems.last())
+            Divider()
     }
 }
 
 @Composable
-fun AppTop() {
+fun DialectsScreen(region: Region, onBackPressed: () -> Unit) {
+    Scaffold(
+        topBar = {
+            AppTop(region, onBackPressed)
+        },
+        bodyContent = {
+            AppContent()
+        },
+        bottomBar = {
+            AppBottom()
+        }
+    )
+}
+
+@Composable
+fun AppTop(region: Region, onBackPressed: () -> Unit) {
     Column {
         TopAppBar(
-            title = {
-                Text(text = "Baianes")
+            navigationIcon = {
+                Icon(
+                    Icons.Filled.ArrowBack,
+                    Modifier.clickable(onClick = { onBackPressed() })
+                )
             },
+            title = { Text(text = region.name) },
             backgroundColor = Color.White,
             elevation = 0.dp
         )
@@ -92,12 +135,25 @@ fun AppTop() {
 @Composable
 fun AppContent() {
     LazyColumnFor(
-        items = items,
+        items = dialectsItems,
         modifier = Modifier.background(Color.LightGray.copy(alpha = .1f))
     ) { item ->
         Spacer(modifier = Modifier.height(8.dp))
         DialectCard(item)
     }
+}
+
+@Composable
+fun DialectRegion(region: Region, onClick: (Region) -> Unit) {
+    Text(
+        text = region.name,
+        color = Color.Black,
+        fontSize = 16.sp,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = { onClick(region) })
+            .padding(16.dp)
+    )
 }
 
 @Composable
@@ -165,8 +221,8 @@ fun AppBottom() {
     // TODO
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    App()
-}
+// @Preview(showBackground = true)
+// @Composable
+// fun DefaultPreview() {
+//    DialectsScreen()
+// }
