@@ -1,2 +1,0 @@
-include ':app', ':data', ':presentation', ':domain', ':utils'
-rootProject.name='Dialetus'
