@@ -1,7 +1,6 @@
 package com.jcaique.dialetus.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
@@ -22,8 +21,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Providers
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -55,21 +57,21 @@ private val dialectsItems by lazy {
 }
 
 class DialetusActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DialetusTheme {
-                val regionState = remember {
-                    mutableStateOf<Region?>(null)
+                val navigator = remember {
+                    mutableStateOf(Navigator(Screen.Regions, onBackPressedDispatcher))
                 }
 
-                if (regionState.value != null) {
-                    DialectsScreen(regionState.value!!) {
-                        regionState.value = null
-                    }
-                } else {
-                    RegionScreen {
-                        regionState.value = it
+                Providers(
+                    NavigatorAmbient provides navigator.value
+                ) {
+                    when (val screen = navigator.value.currentScreen) {
+                        is Screen.Regions -> RegionScreen()
+                        is Screen.Dialects -> DialectsScreen(screen.region)
                     }
                 }
             }
@@ -78,25 +80,22 @@ class DialetusActivity : AppCompatActivity() {
 }
 
 @Composable
-fun RegionScreen(onClick: (Region) -> Unit) {
+fun RegionScreen() {
     LazyColumnFor(
         items = regionsItems,
         modifier = Modifier.background(Color.LightGray.copy(alpha = .1f))
     ) { item ->
-        DialectRegion(
-            region = item,
-            onClick = onClick
-        )
+        DialectRegion(region = item)
         if (item != regionsItems.last())
             Divider()
     }
 }
 
 @Composable
-fun DialectsScreen(region: Region, onBackPressed: () -> Unit) {
+fun DialectsScreen(region: Region) {
     Scaffold(
         topBar = {
-            AppTop(region, onBackPressed)
+            AppTop(region)
         },
         bodyContent = {
             AppContent()
@@ -108,13 +107,15 @@ fun DialectsScreen(region: Region, onBackPressed: () -> Unit) {
 }
 
 @Composable
-fun AppTop(region: Region, onBackPressed: () -> Unit) {
+fun AppTop(region: Region) {
+    val navigator = NavigatorAmbient.current
+
     Column {
         TopAppBar(
             navigationIcon = {
                 Icon(
                     Icons.Filled.ArrowBack,
-                    Modifier.clickable(onClick = { onBackPressed() })
+                    Modifier.clickable(onClick = { navigator.back() })
                 )
             },
             title = { Text(text = region.name) },
@@ -144,14 +145,16 @@ fun AppContent() {
 }
 
 @Composable
-fun DialectRegion(region: Region, onClick: (Region) -> Unit) {
+fun DialectRegion(region: Region) {
+    val navigator = NavigatorAmbient.current
+
     Text(
         text = region.name,
         color = Color.Black,
         fontSize = 16.sp,
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = { onClick(region) })
+            .clickable(onClick = { navigator.navigate(Screen.Dialects(region)) })
             .padding(16.dp)
     )
 }
@@ -183,7 +186,6 @@ fun DialectCard(dialect: Dialect) {
                 modifier = Modifier
                     .align(Alignment.End)
                     .padding(16.dp)
-                    .clickable(onClick = { Log.d("SHARE", dialect.dialect) })
             )
         }
     }
