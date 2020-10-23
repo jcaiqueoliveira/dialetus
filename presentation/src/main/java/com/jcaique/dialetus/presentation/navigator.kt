@@ -9,6 +9,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.jcaique.dialetus.domain.models.Region
 
+val NavigatorAmbient = ambientOf<Navigator> { error("Navigator not initialized") }
+
 sealed class Screen {
     object Regions : Screen()
     data class Dialects(val region: Region) : Screen()
@@ -22,16 +24,16 @@ class Navigator(
     var currentScreen by mutableStateOf(stack.first())
         private set
 
-    val backPressedCallback: OnBackPressedCallback
+    val onBackPressedCallback: OnBackPressedCallback
 
     init {
-        backPressedCallback = onBackPressedDispatcher.addCallback { back() }
+        onBackPressedCallback = onBackPressedDispatcher.addCallback { back() }
     }
 
     fun navigate(screen: Screen) {
         stack.addLast(screen)
         currentScreen = screen
-        backPressedCallback.isEnabled = true
+        onBackPressedCallback.isEnabled = true
     }
 
     fun back() {
@@ -39,10 +41,8 @@ class Navigator(
         stack.lastOrNull()
             ?.let(::currentScreen::set)
             ?: run {
-                backPressedCallback.isEnabled = false
+                onBackPressedCallback.isEnabled = false
                 onBackPressedDispatcher.onBackPressed()
             }
     }
 }
-
-val NavigatorAmbient = ambientOf<Navigator> { error("Navigator not initialized") }
