@@ -1,4 +1,4 @@
-package com.jcaique.dialetus.presentation.ui
+package com.jcaique.dialetus.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
