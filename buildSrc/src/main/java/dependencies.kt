@@ -1,7 +1,7 @@
 object Versions {
 
     const val kotlin = "1.4.10"
-    const val androidGradleSupport = "4.2.0-alpha14"
+    const val androidGradleSupport = "4.2.0-alpha16"
     const val gmsSupport = "4.3.2"
     const val ktlint = "9.0.0"
     const val detekt = "1.1.1"
@@ -21,7 +21,7 @@ object Versions {
 
     const val androidxLifecycle = "2.1.0"
     
-    const val compose = "1.0.0-alpha05"
+    const val compose = "1.0.0-alpha07"
 
     const val firebaseCrashlytics = "2.10.1"
 

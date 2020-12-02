@@ -1,6 +1,5 @@
 package com.jcaique.dialetus.presentation.ui.screen
 
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.Divider
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,6 +20,7 @@ import com.jcaique.dialetus.domain.models.Region
 import com.jcaique.dialetus.presentation.NavigatorAmbient
 import com.jcaique.dialetus.presentation.R
 import com.jcaique.dialetus.presentation.Screen.Dialects
+import com.jcaique.dialetus.presentation.StringsAmbient
 import com.jcaique.dialetus.presentation.ui.DialetusTopBar
 
 @Composable
@@ -33,7 +34,7 @@ fun RegionsScreen(regions: List<Region>) {
 @Composable
 fun Header() {
     DialetusTopBar(
-        title = "Dialetus",
+        title = StringsAmbient.current.appName,
         icon = vectorResource(id = R.drawable.ic_logo)
     )
 }

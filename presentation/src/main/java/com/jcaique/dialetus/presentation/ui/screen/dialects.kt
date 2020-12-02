@@ -1,7 +1,5 @@
 package com.jcaique.dialetus.presentation.ui.screen
 
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,8 +9,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Share
@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.jcaique.dialetus.domain.models.Dialect
 import com.jcaique.dialetus.domain.models.Region
 import com.jcaique.dialetus.presentation.NavigatorAmbient
+import com.jcaique.dialetus.presentation.StringsAmbient
 import com.jcaique.dialetus.presentation.ui.DialetusDivider
 import com.jcaique.dialetus.presentation.ui.DialetusSearchField
 import com.jcaique.dialetus.presentation.ui.DialetusTopBar
@@ -72,6 +73,8 @@ private fun Content(dialects: List<Dialect>) {
 
 @Composable
 private fun DialectCard(dialect: Dialect) {
+    val strings = StringsAmbient.current
+
     Card(
         elevation = 2.dp
     ) {
@@ -85,8 +88,8 @@ private fun DialectCard(dialect: Dialect) {
                     .align(Alignment.CenterHorizontally)
                     .padding(top = 16.dp)
             )
-            DialectCardSection(title = "Significado", items = dialect.meanings)
-            DialectCardSection(title = "Exemplos", items = dialect.examples)
+            DialectCardSection(title = strings.meaning, items = dialect.meanings)
+            DialectCardSection(title = strings.examples, items = dialect.examples)
 
             DialetusDivider()
 
