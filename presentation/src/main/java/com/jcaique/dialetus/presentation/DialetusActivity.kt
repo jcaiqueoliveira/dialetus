@@ -52,7 +52,8 @@ class DialetusActivity : AppCompatActivity() {
             }
 
             Providers(
-                NavigatorAmbient provides navigator.value
+                NavigatorAmbient provides navigator.value,
+                StringsAmbient provides Strings()
             ) {
                 Crossfade(current = navigator.value.currentScreen) { screen ->
                     when (screen) {
